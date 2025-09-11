@@ -12,17 +12,32 @@ namespace TPWinForm_equipo_22A
 {
 	public partial class frmArticulos : Form
 	{
+		private List<Articulo> listaArticulos;
 		public frmArticulos()
 		{
 			InitializeComponent();
 
 		}
-		
 
 
-private void frmArticulos_Load(object sender, EventArgs e)
+
+		private void frmArticulos_Load(object sender, EventArgs e)
 		{
+			cargarGrilla();
+		}
 
+		private void cargarGrilla()
+		{
+			ArticuloNegocio negocio = new ArticuloNegocio();
+			try
+			{
+				listaArticulos = negocio.Listar();
+				dgvArticulos.DataSource = listaArticulos;
+			}
+			catch (Exception ex)
+			{
+				MessageBox.Show(ex.ToString());
+			}
 		}
 
 		private void btnAgregar_Click(object sender, EventArgs e)

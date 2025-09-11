@@ -47,7 +47,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Articulo.cs" />
+    <Compile Include="ArticuloNegocio.cs" />
     <Compile Include="Categoria.cs" />
+    <Compile Include="CategoriaNagocio.cs" />
     <Compile Include="frmArticulos.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -80,6 +82,7 @@
     </Compile>
     <Compile Include="ImagenArticulo.cs" />
     <Compile Include="Marca.cs" />
+    <Compile Include="MarcaNegocio.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="frmArticulos.resx">

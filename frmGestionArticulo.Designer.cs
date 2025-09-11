@@ -144,7 +144,7 @@
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(800, 450);
+			this.ClientSize = new System.Drawing.Size(784, 450);
 			this.Controls.Add(this.btnCancelar);
 			this.Controls.Add(this.btnAceptar);
 			this.Controls.Add(this.cboCategoria);
@@ -157,6 +157,8 @@
 			this.Controls.Add(this.txtNombre);
 			this.Controls.Add(this.txtCodigo);
 			this.Controls.Add(this.txtDescripcion);
+			this.MaximizeBox = false;
+			this.MaximumSize = new System.Drawing.Size(800, 600);
 			this.Name = "frmGestionArticulo";
 			this.Text = "frmGestionArticulo";
 			this.ResumeLayout(false);
