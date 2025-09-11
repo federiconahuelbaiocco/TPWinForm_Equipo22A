@@ -28,79 +28,113 @@
 		/// </summary>
 		private void InitializeComponent()
 		{
-			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmArticulos));
 			this.dgvArticulos = new System.Windows.Forms.DataGridView();
-			this.toolStrip1 = new System.Windows.Forms.ToolStrip();
-			this.btnAdminMarcas = new System.Windows.Forms.ToolStripButton();
-			this.btnAdminCategorias = new System.Windows.Forms.ToolStripButton();
+			this.btnAgregar = new System.Windows.Forms.Button();
+			this.btnModificar = new System.Windows.Forms.Button();
+			this.btnEliminar = new System.Windows.Forms.Button();
+			this.btnDetalle = new System.Windows.Forms.Button();
+			this.btnAdminMarcas = new System.Windows.Forms.Button();
+			this.btnAdminCategorias = new System.Windows.Forms.Button();
 			((System.ComponentModel.ISupportInitialize)(this.dgvArticulos)).BeginInit();
-			this.toolStrip1.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// dgvArticulos
 			// 
 			this.dgvArticulos.AllowUserToOrderColumns = true;
 			this.dgvArticulos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-			this.dgvArticulos.Location = new System.Drawing.Point(85, 125);
+			this.dgvArticulos.Location = new System.Drawing.Point(85, 112);
 			this.dgvArticulos.Name = "dgvArticulos";
 			this.dgvArticulos.Size = new System.Drawing.Size(547, 313);
 			this.dgvArticulos.TabIndex = 0;
 			// 
-			// toolStrip1
+			// btnAgregar
 			// 
-			this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.btnAdminMarcas,
-            this.btnAdminCategorias});
-			this.toolStrip1.Location = new System.Drawing.Point(0, 0);
-			this.toolStrip1.Name = "toolStrip1";
-			this.toolStrip1.Size = new System.Drawing.Size(800, 25);
-			this.toolStrip1.TabIndex = 1;
-			this.toolStrip1.Text = "toolStrip1";
+			this.btnAgregar.Location = new System.Drawing.Point(103, 60);
+			this.btnAgregar.Name = "btnAgregar";
+			this.btnAgregar.Size = new System.Drawing.Size(75, 23);
+			this.btnAgregar.TabIndex = 2;
+			this.btnAgregar.Text = "Agregar";
+			this.btnAgregar.UseVisualStyleBackColor = true;
+			this.btnAgregar.Click += new System.EventHandler(this.btnAgregar_Click);
+			// 
+			// btnModificar
+			// 
+			this.btnModificar.Location = new System.Drawing.Point(184, 60);
+			this.btnModificar.Name = "btnModificar";
+			this.btnModificar.Size = new System.Drawing.Size(75, 23);
+			this.btnModificar.TabIndex = 3;
+			this.btnModificar.Text = "Modificar";
+			this.btnModificar.UseVisualStyleBackColor = true;
+			this.btnModificar.Click += new System.EventHandler(this.btnModificar_Click);
+			// 
+			// btnEliminar
+			// 
+			this.btnEliminar.Location = new System.Drawing.Point(265, 60);
+			this.btnEliminar.Name = "btnEliminar";
+			this.btnEliminar.Size = new System.Drawing.Size(75, 23);
+			this.btnEliminar.TabIndex = 4;
+			this.btnEliminar.Text = "Eliminar";
+			this.btnEliminar.UseVisualStyleBackColor = true;
+			// 
+			// btnDetalle
+			// 
+			this.btnDetalle.Location = new System.Drawing.Point(346, 60);
+			this.btnDetalle.Name = "btnDetalle";
+			this.btnDetalle.Size = new System.Drawing.Size(75, 23);
+			this.btnDetalle.TabIndex = 5;
+			this.btnDetalle.Text = "Detalle";
+			this.btnDetalle.UseVisualStyleBackColor = true;
+			this.btnDetalle.Click += new System.EventHandler(this.btnDetalle_Click);
 			// 
 			// btnAdminMarcas
 			// 
-			this.btnAdminMarcas.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-			this.btnAdminMarcas.Image = ((System.Drawing.Image)(resources.GetObject("btnAdminMarcas.Image")));
-			this.btnAdminMarcas.ImageTransparentColor = System.Drawing.Color.Magenta;
+			this.btnAdminMarcas.Location = new System.Drawing.Point(437, 60);
 			this.btnAdminMarcas.Name = "btnAdminMarcas";
-			this.btnAdminMarcas.Size = new System.Drawing.Size(23, 22);
-			this.btnAdminMarcas.Text = "toolStripButton1";
-			this.btnAdminMarcas.Click += new System.EventHandler(this.btnAdminMarcas_Click);
+			this.btnAdminMarcas.Size = new System.Drawing.Size(75, 23);
+			this.btnAdminMarcas.TabIndex = 6;
+			this.btnAdminMarcas.Text = "Marcas";
+			this.btnAdminMarcas.UseVisualStyleBackColor = true;
+			this.btnAdminMarcas.Click += new System.EventHandler(this.btnMarcas_Click);
 			// 
 			// btnAdminCategorias
 			// 
-			this.btnAdminCategorias.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-			this.btnAdminCategorias.Image = ((System.Drawing.Image)(resources.GetObject("btnAdminCategorias.Image")));
-			this.btnAdminCategorias.ImageTransparentColor = System.Drawing.Color.Magenta;
+			this.btnAdminCategorias.Location = new System.Drawing.Point(557, 60);
 			this.btnAdminCategorias.Name = "btnAdminCategorias";
-			this.btnAdminCategorias.Size = new System.Drawing.Size(23, 22);
-			this.btnAdminCategorias.Text = "toolStripButton2";
-			this.btnAdminCategorias.Click += new System.EventHandler(this.btnAdminCategorias_Click);
+			this.btnAdminCategorias.Size = new System.Drawing.Size(75, 23);
+			this.btnAdminCategorias.TabIndex = 7;
+			this.btnAdminCategorias.Text = "Categorias";
+			this.btnAdminCategorias.UseVisualStyleBackColor = true;
+			this.btnAdminCategorias.Click += new System.EventHandler(this.btnCategorias_Click);
 			// 
 			// frmArticulos
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(800, 450);
-			this.Controls.Add(this.toolStrip1);
+			this.Controls.Add(this.btnAdminCategorias);
+			this.Controls.Add(this.btnAdminMarcas);
+			this.Controls.Add(this.btnDetalle);
+			this.Controls.Add(this.btnEliminar);
+			this.Controls.Add(this.btnModificar);
+			this.Controls.Add(this.btnAgregar);
 			this.Controls.Add(this.dgvArticulos);
 			this.Name = "frmArticulos";
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
 			this.Text = "frmArticulos";
 			this.Load += new System.EventHandler(this.frmArticulos_Load);
 			((System.ComponentModel.ISupportInitialize)(this.dgvArticulos)).EndInit();
-			this.toolStrip1.ResumeLayout(false);
-			this.toolStrip1.PerformLayout();
 			this.ResumeLayout(false);
-			this.PerformLayout();
 
 		}
 
 		#endregion
 
 		private System.Windows.Forms.DataGridView dgvArticulos;
-		private System.Windows.Forms.ToolStrip toolStrip1;
-		private System.Windows.Forms.ToolStripButton btnAdminMarcas;
-		private System.Windows.Forms.ToolStripButton btnAdminCategorias;
+		private System.Windows.Forms.Button btnAgregar;
+		private System.Windows.Forms.Button btnModificar;
+		private System.Windows.Forms.Button btnEliminar;
+		private System.Windows.Forms.Button btnDetalle;
+		private System.Windows.Forms.Button btnAdminMarcas;
+		private System.Windows.Forms.Button btnAdminCategorias;
 	}
 }

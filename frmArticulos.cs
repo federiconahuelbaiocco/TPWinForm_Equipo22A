@@ -1,5 +1,4 @@
-﻿using proyectoParaActividad2;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -23,20 +22,36 @@ namespace TPWinForm_equipo_22A
 
 private void frmArticulos_Load(object sender, EventArgs e)
 		{
-			SQLDatos datos = new SQLDatos();
-			dgvArticulos.DataSource = datos.listar();
+
 		}
 
-		private void btnAdminMarcas_Click(object sender, EventArgs e)
+		private void btnAgregar_Click(object sender, EventArgs e)
 		{
-			frmMarcas ventanaMarcas = new frmMarcas();
-			ventanaMarcas.ShowDialog();
+			frmGestionArticulo ventana = new frmGestionArticulo();
+			ventana.ShowDialog();
 		}
 
-		private void btnAdminCategorias_Click(object sender, EventArgs e)
+		private void btnModificar_Click(object sender, EventArgs e)
 		{
-			frmCategorias ventanaCategorias = new frmCategorias();
-			ventanaCategorias.ShowDialog();
+
+		}
+
+		private void btnDetalle_Click(object sender, EventArgs e)
+		{
+			frmDetalleArticulo ventana = new frmDetalleArticulo();
+			ventana.ShowDialog();
+		}
+
+		private void btnCategorias_Click(object sender, EventArgs e)
+		{
+			frmCategorias ventana = new frmCategorias();
+			ventana.ShowDialog();
+		}
+
+		private void btnMarcas_Click(object sender, EventArgs e)
+		{
+			frmMarcas ventana = new frmMarcas();
+			ventana.ShowDialog();
 		}
 	}
 }
