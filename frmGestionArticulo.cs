@@ -12,9 +12,23 @@ namespace TPWinForm_equipo_22A
 {
 	public partial class frmGestionArticulo : Form
 	{
+
+		private Articulo articulo = null;
+
+		// Constructor para agregar 
 		public frmGestionArticulo()
 		{
 			InitializeComponent();
+			// Cuando no se le pasa un artículo, creo uno nuevo.
+			articulo = new Articulo();
+		}
+
+		// Constructor para modificar: recibe el artículo
+		public frmGestionArticulo(Articulo articulo)
+		{
+			InitializeComponent();
+			// aca guardo el articulo que recibo
+			this.articulo = articulo;
 		}
 
 		private void frmGestionArticulo_Load(object sender, EventArgs e)
@@ -38,6 +52,25 @@ namespace TPWinForm_equipo_22A
 				List<Categoria> listaCategorias = categoriaNegocio.listar();
 				cboCategoria.DataSource = listaCategorias.GroupBy(x => x.Descripcion).Select(g => g.First()).ToList();
 				// https://stackoverflow.com/questions/19012986/how-to-get-first-record-in-each-group-using-linq referencia para entender el  LINQ
+				
+				
+				// Verifico si tengo un artículo para modificar
+				if (articulo != null && articulo.Id != 0)
+				{
+					// Si hay un artículo, cargo sus datos en los controles
+					txtCodigo.Text = articulo.Codigo;
+					txtNombre.Text = articulo.Nombre;
+					txtDescripcion.Text = articulo.Descripcion;
+					txtPrecio.Text = articulo.Precio.ToString();
+
+					// Cargo la marca y categoría correctas en los ComboBox
+					// Uso los IDs para seleccionar la opción correcta en los ComboBox.
+					// Estos ComboBox solo se cargarán si el objeto articulo.Marca no es nulo
+					if (articulo.Marca != null)
+						cboMarca.SelectedValue = articulo.Marca.Id;
+					if (articulo.Categoria != null)
+						cboCategoria.SelectedValue = articulo.Categoria.Id;
+				}
 			}
 			catch (Exception ex)
 			{
@@ -52,27 +85,36 @@ namespace TPWinForm_equipo_22A
 
 		private void btnAceptar_Click(object sender, EventArgs e)
 		{
-			Articulo nuevo = new Articulo();
 			ArticuloNegocio negocio = new ArticuloNegocio();
 
 			try
 			{
-				// Asigno lo que escribió el usuario en los campos con .text
-				nuevo.Codigo = txtCodigo.Text;
-				nuevo.Nombre = txtNombre.Text;
-				nuevo.Descripcion = txtDescripcion.Text;
+				// Asigno lo que escribió el usuario en los campos
+				articulo.Codigo = txtCodigo.Text;
+				articulo.Nombre = txtNombre.Text;
+				articulo.Descripcion = txtDescripcion.Text;
 
-				// hago la conversin del texto del precio a un número decimal
-				nuevo.Precio = decimal.Parse(txtPrecio.Text);
+				// Convierto el texto del precio a un número decimal
+				articulo.Precio = decimal.Parse(txtPrecio.Text);
 
 				// Tomo el objeto completo que seleccionó el usuario del ComboBox
-				nuevo.Marca = (Marca)cboMarca.SelectedItem;
-				nuevo.Categoria = (Categoria)cboCategoria.SelectedItem;
+				articulo.Marca = (Marca)cboMarca.SelectedItem;
+				articulo.Categoria = (Categoria)cboCategoria.SelectedItem;
 
-				// Le pido a mi clase ArticuloNegocio que guarde el artículo que creé
-				negocio.agregar(nuevo);
+				// Si el ID del artículo es 0, es nuevo Si tiene ID, significa que ya existe entonces lo estoy modificando modificando.
+				if (articulo.Id != 0)
+				{
+					negocio.modificar(articulo);
+					MessageBox.Show("Modificado exitosamente");
+				}
+				else
+				{
+					negocio.agregar(articulo);
+					MessageBox.Show("Agregado exitosamente");
+				}
 
 				// Cierro la ventana de gestión
+				this.Close();
 			}
 			catch (Exception ex)
 			{

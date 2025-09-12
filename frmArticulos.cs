@@ -44,11 +44,33 @@ namespace TPWinForm_equipo_22A
 		{
 			frmGestionArticulo ventana = new frmGestionArticulo();
 			ventana.ShowDialog();
+			// Cuando la ventana de gestion articulo se cierra, recargo la grilla para ver el nuevo artículo
+			cargarGrilla();
 		}
 
 		private void btnModificar_Click(object sender, EventArgs e)
 		{
+			// Declaro una variable local para el articulo seleccionado
+			Articulo seleccionado;
 
+			// Verifico si hay una fila seleccionada en la grilla
+			if (dgvArticulos.CurrentRow != null)
+			{
+				// Tomo el objeto completo que está en la fila seleccionada
+				seleccionado = (Articulo)dgvArticulos.CurrentRow.DataBoundItem;
+
+				// Creo una nueva ventana, pero esta vez le paso el objeto seleccionado
+				frmGestionArticulo modificar = new frmGestionArticulo(seleccionado);
+				modificar.ShowDialog();
+
+				// Vuelvo a cargar la grilla para ver los cambios
+				cargarGrilla();
+			}
+			else
+			{
+				// Si el usuario no seleccionó nada, muestro un mensaje
+				MessageBox.Show("Por favor, seleccione un artículo para modificar.");
+			}
 		}
 
 		private void btnDetalle_Click(object sender, EventArgs e)
@@ -67,6 +89,42 @@ namespace TPWinForm_equipo_22A
 		{
 			frmMarcas ventana = new frmMarcas();
 			ventana.ShowDialog();
+		}
+
+		private void btnEliminar_Click(object sender, EventArgs e)
+		{
+			ArticuloNegocio negocio = new ArticuloNegocio();
+			Articulo seleccionado;
+
+			try
+			{
+				// Verifico que haya una fila seleccionada
+				if (dgvArticulos.CurrentRow != null)
+				{
+					// Tomo el objeto completo de la fila seleccionada
+					seleccionado = (Articulo)dgvArticulos.CurrentRow.DataBoundItem;
+
+					// Muestro un mensaje de confirmación al usuario
+					DialogResult respuesta = MessageBox.Show("¿Seguro que quiere eliminar este artículo?", "Eliminar", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+
+					// Si el usuario confirma, lo elimino
+					if (respuesta == DialogResult.Yes)
+					{
+						negocio.eliminar(seleccionado.Id);
+
+						// Recargo la grilla para que ya no aparezca
+						cargarGrilla();
+					}
+				}
+				else
+				{
+					MessageBox.Show("Por favor, seleccione un artículo para eliminar.");
+				}
+			}
+			catch (Exception ex)
+			{
+				MessageBox.Show(ex.ToString());
+			}
 		}
 	}
 }

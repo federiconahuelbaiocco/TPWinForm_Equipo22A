@@ -16,5 +16,19 @@ namespace TPWinForm_equipo_22A
 		{
 			InitializeComponent();
 		}
+
+		private void frmCategorias_Load(object sender, EventArgs e)
+		{
+			CategoriaNegocio negocio = new CategoriaNegocio();
+			try
+			{
+				// Obtengo la lista de categorías de la base de datos
+				dgvCategorias.DataSource = negocio.listar();
+			}
+			catch (Exception ex)
+			{
+				MessageBox.Show(ex.ToString());
+			}
+		}
 	}
 }

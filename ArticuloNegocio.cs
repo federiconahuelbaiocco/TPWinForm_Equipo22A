@@ -86,5 +86,69 @@ namespace TPWinForm_equipo_22A
 				conexion.Close();
 			}
 		}
+
+		//logica para modificar 
+		public void modificar(Articulo articulo)
+		{
+			SqlConnection conexion = new SqlConnection();
+			SqlCommand comando = new SqlCommand();
+			try
+			{
+				conexion.ConnectionString = "server=.\\SQLEXPRESS; database=CATALOGO_P3_DB; integrated security=true";
+				comando.CommandType = System.Data.CommandType.Text;
+				comando.CommandText = "UPDATE ARTICULOS set Codigo = @codigo, Nombre = @nombre, Descripcion = @descripcion, IdMarca = @idMarca, IdCategoria = @idCategoria, Precio = @precio WHERE Id = @id";
+				comando.Connection = conexion;
+
+				comando.Parameters.AddWithValue("@codigo", articulo.Codigo); //genero la variable con el @
+				comando.Parameters.AddWithValue("@nombre", articulo.Nombre);
+				comando.Parameters.AddWithValue("@descripcion", articulo.Descripcion);
+				comando.Parameters.AddWithValue("@idMarca", articulo.Marca.Id);
+				comando.Parameters.AddWithValue("@idCategoria", articulo.Categoria.Id);
+				comando.Parameters.AddWithValue("@precio", articulo.Precio);
+				comando.Parameters.AddWithValue("@id", articulo.Id);
+
+				conexion.Open();
+				comando.ExecuteNonQuery();
+
+			}
+			catch (Exception)
+			{
+				throw ;
+			}
+			finally
+			{
+				conexion.Close();
+			}
+		}
+
+		//logi
+		public void eliminar(int id)
+		{
+			SqlConnection conexion = new SqlConnection();
+			SqlCommand comando = new SqlCommand();
+			try
+			{
+				conexion.ConnectionString = "server=.\\SQLEXPRESS; database=CATALOGO_P3_DB; integrated security=true";
+				comando.CommandType = System.Data.CommandType.Text;
+
+				// Consulta SQL para eliminar un registro
+				comando.CommandText = "DELETE FROM ARTICULOS WHERE Id = @id";
+				comando.Connection = conexion;
+
+				comando.Parameters.AddWithValue("@id", id);
+
+				conexion.Open();
+				comando.ExecuteNonQuery();
+
+			}
+			catch (Exception)
+			{
+				throw;
+			}
+			finally
+			{
+				conexion.Close();
+			}
+		}
 	}
 }

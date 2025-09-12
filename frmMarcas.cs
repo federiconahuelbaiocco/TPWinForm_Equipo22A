@@ -16,5 +16,24 @@ namespace TPWinForm_equipo_22A
 		{
 			InitializeComponent();
 		}
+
+		private void btnVolver_Click(object sender, EventArgs e)
+		{
+			Close();
+		}
+
+		private void frmMarcas_Load(object sender, EventArgs e)
+		{
+			MarcaNegocio negocio = new MarcaNegocio();
+			try
+			{
+				// Obtengo la lista de marcas de la base de datos
+				dgvMarcas.DataSource = negocio.listar();
+			}
+			catch (Exception ex)
+			{
+				MessageBox.Show(ex.ToString());
+			}
+		}
 	}
 }

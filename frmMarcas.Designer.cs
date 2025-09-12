@@ -32,6 +32,7 @@
 			this.btnModificar = new System.Windows.Forms.Button();
 			this.btnEliminar = new System.Windows.Forms.Button();
 			this.dgvMarcas = new System.Windows.Forms.DataGridView();
+			this.btnVolver = new System.Windows.Forms.Button();
 			((System.ComponentModel.ISupportInitialize)(this.dgvMarcas)).BeginInit();
 			this.SuspendLayout();
 			// 
@@ -64,28 +65,43 @@
 			// 
 			// dgvMarcas
 			// 
+			this.dgvMarcas.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
 			this.dgvMarcas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-			this.dgvMarcas.Location = new System.Drawing.Point(56, 116);
+			this.dgvMarcas.Location = new System.Drawing.Point(12, 124);
 			this.dgvMarcas.MaximumSize = new System.Drawing.Size(745, 465);
-			this.dgvMarcas.MinimumSize = new System.Drawing.Size(745, 465);
+			this.dgvMarcas.MinimumSize = new System.Drawing.Size(745, 200);
 			this.dgvMarcas.Name = "dgvMarcas";
 			this.dgvMarcas.Size = new System.Drawing.Size(745, 465);
 			this.dgvMarcas.TabIndex = 13;
+			// 
+			// btnVolver
+			// 
+			this.btnVolver.Location = new System.Drawing.Point(636, 63);
+			this.btnVolver.Name = "btnVolver";
+			this.btnVolver.Size = new System.Drawing.Size(75, 23);
+			this.btnVolver.TabIndex = 14;
+			this.btnVolver.Text = "Volver";
+			this.btnVolver.UseVisualStyleBackColor = true;
+			this.btnVolver.Click += new System.EventHandler(this.btnVolver_Click);
 			// 
 			// frmMarcas
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(884, 661);
+			this.ClientSize = new System.Drawing.Size(784, 661);
+			this.Controls.Add(this.btnVolver);
 			this.Controls.Add(this.dgvMarcas);
 			this.Controls.Add(this.btnEliminar);
 			this.Controls.Add(this.btnModificar);
 			this.Controls.Add(this.btnAgregar);
-			this.MaximumSize = new System.Drawing.Size(900, 700);
-			this.MinimumSize = new System.Drawing.Size(900, 700);
+			this.MaximumSize = new System.Drawing.Size(800, 700);
+			this.MinimumSize = new System.Drawing.Size(800, 400);
 			this.Name = "frmMarcas";
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
 			this.Text = "frmMarcas";
+			this.Load += new System.EventHandler(this.frmMarcas_Load);
 			((System.ComponentModel.ISupportInitialize)(this.dgvMarcas)).EndInit();
 			this.ResumeLayout(false);
 
@@ -96,5 +112,6 @@
 		private System.Windows.Forms.Button btnModificar;
 		private System.Windows.Forms.Button btnEliminar;
 		private System.Windows.Forms.DataGridView dgvMarcas;
+		private System.Windows.Forms.Button btnVolver;
 	}
 }
