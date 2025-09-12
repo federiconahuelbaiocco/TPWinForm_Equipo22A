@@ -40,6 +40,7 @@
 			this.cboCategoria = new System.Windows.Forms.ComboBox();
 			this.btnAceptar = new System.Windows.Forms.Button();
 			this.btnCancelar = new System.Windows.Forms.Button();
+			this.btnVolver = new System.Windows.Forms.Button();
 			this.SuspendLayout();
 			// 
 			// txtDescripcion
@@ -108,43 +109,58 @@
 			// 
 			// cboMarca
 			// 
+			this.cboMarca.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
 			this.cboMarca.FormattingEnabled = true;
-			this.cboMarca.Location = new System.Drawing.Point(491, 109);
+			this.cboMarca.Location = new System.Drawing.Point(367, 101);
 			this.cboMarca.Name = "cboMarca";
 			this.cboMarca.Size = new System.Drawing.Size(121, 21);
 			this.cboMarca.TabIndex = 9;
 			// 
 			// cboCategoria
 			// 
+			this.cboCategoria.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
 			this.cboCategoria.FormattingEnabled = true;
-			this.cboCategoria.Location = new System.Drawing.Point(491, 159);
+			this.cboCategoria.Location = new System.Drawing.Point(367, 205);
 			this.cboCategoria.Name = "cboCategoria";
 			this.cboCategoria.Size = new System.Drawing.Size(121, 21);
 			this.cboCategoria.TabIndex = 10;
 			// 
 			// btnAceptar
 			// 
-			this.btnAceptar.Location = new System.Drawing.Point(178, 339);
+			this.btnAceptar.Location = new System.Drawing.Point(178, 354);
 			this.btnAceptar.Name = "btnAceptar";
 			this.btnAceptar.Size = new System.Drawing.Size(75, 23);
 			this.btnAceptar.TabIndex = 11;
 			this.btnAceptar.Text = "Aceptar";
 			this.btnAceptar.UseVisualStyleBackColor = true;
+			this.btnAceptar.Click += new System.EventHandler(this.btnAceptar_Click);
 			// 
 			// btnCancelar
 			// 
-			this.btnCancelar.Location = new System.Drawing.Point(385, 339);
+			this.btnCancelar.Location = new System.Drawing.Point(317, 354);
 			this.btnCancelar.Name = "btnCancelar";
 			this.btnCancelar.Size = new System.Drawing.Size(75, 23);
 			this.btnCancelar.TabIndex = 12;
 			this.btnCancelar.Text = "Cancelar";
 			this.btnCancelar.UseVisualStyleBackColor = true;
+			this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
+			// 
+			// btnVolver
+			// 
+			this.btnVolver.Location = new System.Drawing.Point(443, 354);
+			this.btnVolver.Name = "btnVolver";
+			this.btnVolver.Size = new System.Drawing.Size(75, 23);
+			this.btnVolver.TabIndex = 13;
+			this.btnVolver.Text = "Volver";
+			this.btnVolver.UseVisualStyleBackColor = true;
+			this.btnVolver.Click += new System.EventHandler(this.btnVolver_Click);
 			// 
 			// frmGestionArticulo
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(784, 450);
+			this.ClientSize = new System.Drawing.Size(684, 461);
+			this.Controls.Add(this.btnVolver);
 			this.Controls.Add(this.btnCancelar);
 			this.Controls.Add(this.btnAceptar);
 			this.Controls.Add(this.cboCategoria);
@@ -158,9 +174,12 @@
 			this.Controls.Add(this.txtCodigo);
 			this.Controls.Add(this.txtDescripcion);
 			this.MaximizeBox = false;
-			this.MaximumSize = new System.Drawing.Size(800, 600);
+			this.MaximumSize = new System.Drawing.Size(700, 500);
+			this.MinimumSize = new System.Drawing.Size(700, 500);
 			this.Name = "frmGestionArticulo";
+			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
 			this.Text = "frmGestionArticulo";
+			this.Load += new System.EventHandler(this.frmGestionArticulo_Load);
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
@@ -180,5 +199,6 @@
 		private System.Windows.Forms.ComboBox cboCategoria;
 		private System.Windows.Forms.Button btnAceptar;
 		private System.Windows.Forms.Button btnCancelar;
+		private System.Windows.Forms.Button btnVolver;
 	}
 }

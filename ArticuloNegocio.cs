@@ -54,5 +54,37 @@ namespace TPWinForm_equipo_22A
 					conexion.Close();
 			}
 		}
+		public void agregar(Articulo nuevo)
+		{
+			SqlConnection conexion = new SqlConnection();
+			SqlCommand comando = new SqlCommand();
+			try
+			{
+				conexion.ConnectionString = "server=.\\SQLEXPRESS; database=CATALOGO_P3_DB; integrated security=true";
+				comando.CommandType = System.Data.CommandType.Text;
+				comando.CommandText = "INSERT into ARTICULOS (Codigo, Nombre, Descripcion, IdMarca, IdCategoria, Precio) values (@codigo, @nombre, @descripcion, @idMarca, @idCategoria, @precio)";
+				comando.Connection = conexion;
+
+				// Pasamos los parámetros
+				comando.Parameters.AddWithValue("@codigo", nuevo.Codigo);
+				comando.Parameters.AddWithValue("@nombre", nuevo.Nombre);
+				comando.Parameters.AddWithValue("@descripcion", nuevo.Descripcion);
+				comando.Parameters.AddWithValue("@idMarca", nuevo.Marca.Id);
+				comando.Parameters.AddWithValue("@idCategoria", nuevo.Categoria.Id);
+				comando.Parameters.AddWithValue("@precio", nuevo.Precio);
+
+				conexion.Open();
+				comando.ExecuteNonQuery();
+
+			}
+			catch (Exception)
+			{
+				throw;
+			}
+			finally
+			{
+				conexion.Close();
+			}
+		}
 	}
 }

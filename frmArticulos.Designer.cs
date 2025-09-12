@@ -42,7 +42,7 @@
 			// 
 			this.dgvArticulos.AllowUserToOrderColumns = true;
 			this.dgvArticulos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-			this.dgvArticulos.Location = new System.Drawing.Point(43, 89);
+			this.dgvArticulos.Location = new System.Drawing.Point(70, 129);
 			this.dgvArticulos.MaximumSize = new System.Drawing.Size(745, 465);
 			this.dgvArticulos.MinimumSize = new System.Drawing.Size(745, 465);
 			this.dgvArticulos.Name = "dgvArticulos";
@@ -51,7 +51,7 @@
 			// 
 			// btnAgregar
 			// 
-			this.btnAgregar.Location = new System.Drawing.Point(103, 60);
+			this.btnAgregar.Location = new System.Drawing.Point(70, 60);
 			this.btnAgregar.Name = "btnAgregar";
 			this.btnAgregar.Size = new System.Drawing.Size(75, 23);
 			this.btnAgregar.TabIndex = 2;
@@ -61,7 +61,7 @@
 			// 
 			// btnModificar
 			// 
-			this.btnModificar.Location = new System.Drawing.Point(184, 60);
+			this.btnModificar.Location = new System.Drawing.Point(203, 60);
 			this.btnModificar.Name = "btnModificar";
 			this.btnModificar.Size = new System.Drawing.Size(75, 23);
 			this.btnModificar.TabIndex = 3;
@@ -71,7 +71,7 @@
 			// 
 			// btnEliminar
 			// 
-			this.btnEliminar.Location = new System.Drawing.Point(265, 60);
+			this.btnEliminar.Location = new System.Drawing.Point(338, 60);
 			this.btnEliminar.Name = "btnEliminar";
 			this.btnEliminar.Size = new System.Drawing.Size(75, 23);
 			this.btnEliminar.TabIndex = 4;
@@ -80,7 +80,7 @@
 			// 
 			// btnDetalle
 			// 
-			this.btnDetalle.Location = new System.Drawing.Point(346, 60);
+			this.btnDetalle.Location = new System.Drawing.Point(461, 60);
 			this.btnDetalle.Name = "btnDetalle";
 			this.btnDetalle.Size = new System.Drawing.Size(75, 23);
 			this.btnDetalle.TabIndex = 5;
@@ -90,7 +90,7 @@
 			// 
 			// btnAdminMarcas
 			// 
-			this.btnAdminMarcas.Location = new System.Drawing.Point(437, 60);
+			this.btnAdminMarcas.Location = new System.Drawing.Point(598, 60);
 			this.btnAdminMarcas.Name = "btnAdminMarcas";
 			this.btnAdminMarcas.Size = new System.Drawing.Size(75, 23);
 			this.btnAdminMarcas.TabIndex = 6;
@@ -100,7 +100,7 @@
 			// 
 			// btnAdminCategorias
 			// 
-			this.btnAdminCategorias.Location = new System.Drawing.Point(557, 60);
+			this.btnAdminCategorias.Location = new System.Drawing.Point(740, 60);
 			this.btnAdminCategorias.Name = "btnAdminCategorias";
 			this.btnAdminCategorias.Size = new System.Drawing.Size(75, 23);
 			this.btnAdminCategorias.TabIndex = 7;

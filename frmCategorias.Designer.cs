@@ -38,14 +38,16 @@
 			// dgvCategorias
 			// 
 			this.dgvCategorias.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-			this.dgvCategorias.Location = new System.Drawing.Point(207, 203);
+			this.dgvCategorias.Location = new System.Drawing.Point(39, 149);
+			this.dgvCategorias.MaximumSize = new System.Drawing.Size(745, 465);
+			this.dgvCategorias.MinimumSize = new System.Drawing.Size(745, 465);
 			this.dgvCategorias.Name = "dgvCategorias";
-			this.dgvCategorias.Size = new System.Drawing.Size(386, 150);
+			this.dgvCategorias.Size = new System.Drawing.Size(745, 465);
 			this.dgvCategorias.TabIndex = 17;
 			// 
 			// btnEliminar
 			// 
-			this.btnEliminar.Location = new System.Drawing.Point(518, 97);
+			this.btnEliminar.Location = new System.Drawing.Point(564, 76);
 			this.btnEliminar.Name = "btnEliminar";
 			this.btnEliminar.Size = new System.Drawing.Size(75, 23);
 			this.btnEliminar.TabIndex = 16;
@@ -54,7 +56,7 @@
 			// 
 			// btnModificar
 			// 
-			this.btnModificar.Location = new System.Drawing.Point(372, 97);
+			this.btnModificar.Location = new System.Drawing.Point(301, 76);
 			this.btnModificar.Name = "btnModificar";
 			this.btnModificar.Size = new System.Drawing.Size(75, 23);
 			this.btnModificar.TabIndex = 15;
@@ -63,7 +65,7 @@
 			// 
 			// btnAgregar
 			// 
-			this.btnAgregar.Location = new System.Drawing.Point(210, 97);
+			this.btnAgregar.Location = new System.Drawing.Point(39, 76);
 			this.btnAgregar.Name = "btnAgregar";
 			this.btnAgregar.Size = new System.Drawing.Size(75, 23);
 			this.btnAgregar.TabIndex = 14;
@@ -74,11 +76,13 @@
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(800, 450);
+			this.ClientSize = new System.Drawing.Size(884, 661);
 			this.Controls.Add(this.dgvCategorias);
 			this.Controls.Add(this.btnEliminar);
 			this.Controls.Add(this.btnModificar);
 			this.Controls.Add(this.btnAgregar);
+			this.MaximumSize = new System.Drawing.Size(900, 700);
+			this.MinimumSize = new System.Drawing.Size(900, 700);
 			this.Name = "frmCategorias";
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
 			this.Text = "frmCategorias";

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace TPWinForm_equipo_22A
 {
-	internal class CategoriaNagocio
+	internal class CategoriaNegocio
 	{
 		public List<Categoria> listar()
 		{
@@ -34,9 +34,9 @@ namespace TPWinForm_equipo_22A
 					lista.Add(aux);
 				}
 			}
-			catch (Exception ex)
+			catch (Exception)
 			{
-				throw ex;
+				throw;
 			}
 			finally
 			{

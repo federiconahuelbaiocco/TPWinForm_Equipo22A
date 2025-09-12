@@ -37,7 +37,7 @@
 			// 
 			// btnAgregar
 			// 
-			this.btnAgregar.Location = new System.Drawing.Point(98, 107);
+			this.btnAgregar.Location = new System.Drawing.Point(56, 63);
 			this.btnAgregar.Name = "btnAgregar";
 			this.btnAgregar.Size = new System.Drawing.Size(75, 23);
 			this.btnAgregar.TabIndex = 10;
@@ -46,7 +46,7 @@
 			// 
 			// btnModificar
 			// 
-			this.btnModificar.Location = new System.Drawing.Point(260, 107);
+			this.btnModificar.Location = new System.Drawing.Point(242, 63);
 			this.btnModificar.Name = "btnModificar";
 			this.btnModificar.Size = new System.Drawing.Size(75, 23);
 			this.btnModificar.TabIndex = 11;
@@ -55,7 +55,7 @@
 			// 
 			// btnEliminar
 			// 
-			this.btnEliminar.Location = new System.Drawing.Point(406, 107);
+			this.btnEliminar.Location = new System.Drawing.Point(424, 63);
 			this.btnEliminar.Name = "btnEliminar";
 			this.btnEliminar.Size = new System.Drawing.Size(75, 23);
 			this.btnEliminar.TabIndex = 12;
@@ -65,20 +65,24 @@
 			// dgvMarcas
 			// 
 			this.dgvMarcas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-			this.dgvMarcas.Location = new System.Drawing.Point(95, 213);
+			this.dgvMarcas.Location = new System.Drawing.Point(56, 116);
+			this.dgvMarcas.MaximumSize = new System.Drawing.Size(745, 465);
+			this.dgvMarcas.MinimumSize = new System.Drawing.Size(745, 465);
 			this.dgvMarcas.Name = "dgvMarcas";
-			this.dgvMarcas.Size = new System.Drawing.Size(386, 150);
+			this.dgvMarcas.Size = new System.Drawing.Size(745, 465);
 			this.dgvMarcas.TabIndex = 13;
 			// 
 			// frmMarcas
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(800, 450);
+			this.ClientSize = new System.Drawing.Size(884, 661);
 			this.Controls.Add(this.dgvMarcas);
 			this.Controls.Add(this.btnEliminar);
 			this.Controls.Add(this.btnModificar);
 			this.Controls.Add(this.btnAgregar);
+			this.MaximumSize = new System.Drawing.Size(900, 700);
+			this.MinimumSize = new System.Drawing.Size(900, 700);
 			this.Name = "frmMarcas";
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
 			this.Text = "frmMarcas";

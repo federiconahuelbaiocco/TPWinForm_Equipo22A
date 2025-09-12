@@ -50,6 +50,7 @@
 			this.btnCancelar.TabIndex = 24;
 			this.btnCancelar.Text = "Cancelar";
 			this.btnCancelar.UseVisualStyleBackColor = true;
+			this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
 			// 
 			// btnAceptar
 			// 
@@ -62,6 +63,7 @@
 			// 
 			// cboCategoria
 			// 
+			this.cboCategoria.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
 			this.cboCategoria.FormattingEnabled = true;
 			this.cboCategoria.Location = new System.Drawing.Point(534, 152);
 			this.cboCategoria.Name = "cboCategoria";
@@ -70,6 +72,7 @@
 			// 
 			// cboMarca
 			// 
+			this.cboMarca.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
 			this.cboMarca.FormattingEnabled = true;
 			this.cboMarca.Location = new System.Drawing.Point(534, 102);
 			this.cboMarca.Name = "cboMarca";
