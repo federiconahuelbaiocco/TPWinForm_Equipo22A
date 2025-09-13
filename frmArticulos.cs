@@ -13,6 +13,8 @@ namespace TPWinForm_equipo_22A
 	public partial class frmArticulos : Form
 	{
 		private List<Articulo> listaArticulos;
+		private int indiceImagenActual = 0;
+		private Articulo articuloActual = null;
 		public frmArticulos()
 		{
 			InitializeComponent();
@@ -31,10 +33,11 @@ namespace TPWinForm_equipo_22A
 			ArticuloNegocio negocio = new ArticuloNegocio();
 			try
 			{
+				// Guardamos la lista en la variable de clase antes de asignarla a la grilla
 				listaArticulos = negocio.Listar();
 				dgvArticulos.DataSource = listaArticulos;
 
-				//aca con columns accedo a las columnas de la grilla y le digo que no me muestre las que quiero ocultar con visible = false
+				// Ocultar las columnas
 				dgvArticulos.Columns["Id"].Visible = false;
 				dgvArticulos.Columns["Descripcion"].Visible = false;
 				dgvArticulos.Columns["Marca"].Visible = false;
@@ -145,6 +148,92 @@ namespace TPWinForm_equipo_22A
 			}
 		}
 
-		
+		private void btnAdminCategorias_Click(object sender, EventArgs e)
+		{
+			frmCategorias ventana = new frmCategorias();
+			ventana.ShowDialog();
+		}
+
+		private void btnFiltro_Click(object sender, EventArgs e)
+		{
+			List<Articulo> listaFiltrada;
+			string filtro = txtFiltro.Text.ToUpper();
+
+			if (filtro != "")
+			{
+				listaFiltrada = listaArticulos.FindAll(
+					x => x.Nombre.ToUpper().Contains(filtro) || // condición para el Nombre
+						 x.Codigo.ToUpper().Contains(filtro) || // condición para el Código	
+						 (x.Marca != null && x.Marca.Descripcion.ToUpper().Contains(filtro)) || // condición para la Marca
+						 (x.Categoria != null && x.Categoria.Descripcion.ToUpper().Contains(filtro)) // condición para la Categoría
+				);
+			}
+			else
+			{
+				listaFiltrada = listaArticulos; // Si el filtro está vacío, muestra toda la lista
+			}
+
+			// Asigna la lista filtrada al DataSource de la grilla
+			dgvArticulos.DataSource = listaFiltrada;
+		}
+
+		private void btnReiniciar_Click(object sender, EventArgs e)
+		{
+			// Limpio el filtro con txtFiltro.Clear()
+			txtFiltro.Clear();
+
+			// Recargo la grilla con todos los datos
+			cargarGrilla();
+		}
+
+		private void dgvArticulos_SelectionChanged(object sender, EventArgs e)
+		{
+			if (dgvArticulos.CurrentRow != null)
+			{
+				articuloActual = (Articulo)dgvArticulos.CurrentRow.DataBoundItem;
+				indiceImagenActual = 0;
+				MostrarImagenActual();
+			}
+		}
+
+		private void MostrarImagenActual()
+		{
+			if (articuloActual == null || articuloActual.Imagenes == null || articuloActual.Imagenes.Count == 0)
+			{
+				pbxArticulo.Load("imagenes/imagenDefecto.jpg");
+				return;
+			}
+
+			try
+			{
+				pbxArticulo.Load(articuloActual.Imagenes[indiceImagenActual]);
+			}
+			catch
+			{
+				pbxArticulo.Load("imagenes/imagenDefecto.jpg");
+			}
+		}
+
+		private void btnAnterior_Click(object sender, EventArgs e)
+		{
+			if (articuloActual != null && articuloActual.Imagenes.Count > 0)
+			{
+				indiceImagenActual--;
+				if (indiceImagenActual < 0)
+					indiceImagenActual = articuloActual.Imagenes.Count - 1;
+				MostrarImagenActual();
+			}
+		}
+
+		private void btnSiguiente_Click(object sender, EventArgs e)
+		{
+			if (articuloActual != null && articuloActual.Imagenes.Count > 0)
+			{
+				indiceImagenActual++;
+				if (indiceImagenActual >= articuloActual.Imagenes.Count)
+					indiceImagenActual = 0;
+				MostrarImagenActual();
+			}
+		}
 	}
 }

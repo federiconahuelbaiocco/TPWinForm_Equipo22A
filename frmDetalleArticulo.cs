@@ -13,6 +13,7 @@ namespace TPWinForm_equipo_22A
 	public partial class frmDetalleArticulo : Form
 	{
 		private Articulo articulo = null;
+		private int indiceImagenActual = 0;
 
 		public frmDetalleArticulo(Articulo articulo)
 		{
@@ -62,6 +63,48 @@ namespace TPWinForm_equipo_22A
 				MessageBox.Show("Ocurrió un error al cargar los datos. " + ex.ToString());
 			}
 
+			indiceImagenActual = 0;
+			MostrarImagenActual();
+		}
+
+		private void MostrarImagenActual()
+		{
+			if (articulo == null || articulo.Imagenes == null || articulo.Imagenes.Count == 0)
+			{
+				pbxDetalleImagen.Load("imagenes/imagenDefecto.jpg");
+				return;
+			}
+
+			try
+			{
+				pbxDetalleImagen.Load(articulo.Imagenes[indiceImagenActual]);
+			}
+			catch
+			{
+				pbxDetalleImagen.Load("imagenes/imagenDefecto.jpg");
+			}
+		}
+
+		private void btnAnteriorImagen_Click(object sender, EventArgs e)
+		{
+			if (articulo != null && articulo.Imagenes.Count > 0)
+			{
+				indiceImagenActual--;
+				if (indiceImagenActual < 0)
+					indiceImagenActual = articulo.Imagenes.Count - 1;
+				MostrarImagenActual();
+			}
+		}
+
+		private void btnSiguienteImagen_Click(object sender, EventArgs e)
+		{
+			if (articulo != null && articulo.Imagenes.Count > 0)
+			{
+				indiceImagenActual++;
+				if (indiceImagenActual >= articulo.Imagenes.Count)
+					indiceImagenActual = 0;
+				MostrarImagenActual();
+			}
 		}
 	}
 }

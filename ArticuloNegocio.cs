@@ -21,8 +21,7 @@ namespace TPWinForm_equipo_22A
 				conexion.ConnectionString = "server=.\\SQLEXPRESS; database=CATALOGO_P3_DB; integrated security=true";
 				comando.CommandType = System.Data.CommandType.Text;
 
-				// Usamos el JOIN para obtener las descripciones de las marcas y categorías.
-				comando.CommandText = "SELECT A.Id, A.Codigo, A.Nombre, A.Descripcion, M.Descripcion, C.Descripcion, A.IdMarca, A.IdCategoria, A.Precio FROM ARTICULOS A, MARCAS M, CATEGORIAS C WHERE A.IdMarca = M.Id AND A.IdCategoria = C.Id";
+				comando.CommandText = "SELECT A.Id, A.Codigo, A.Nombre, A.Descripcion, A.IdMarca, A.IdCategoria, A.Precio, M.Descripcion AS Marca, C.Descripcion AS Categoria FROM ARTICULOS A LEFT JOIN MARCAS M ON A.IdMarca = M.Id LEFT JOIN CATEGORIAS C ON A.IdCategoria = C.Id";
 				comando.Connection = conexion;
 
 				conexion.Open();
@@ -32,26 +31,28 @@ namespace TPWinForm_equipo_22A
 				{
 					Articulo aux = new Articulo();
 
-					// Asignamos las propiedades usando el índice de cada columna
-					aux.Id = lector.GetInt32(0);
-					aux.Codigo = lector.GetString(1);
-					aux.Nombre = lector.GetString(2);
-					aux.Descripcion = lector.GetString(3);
+					aux.Id = (int)lector["Id"];
+					aux.Codigo = (string)lector["Codigo"];
+					aux.Nombre = (string)lector["Nombre"];
+					aux.Descripcion = (string)lector["Descripcion"];
 
-					// verificamos si el precio es nulo antes de asignarlo
-					if (!lector.IsDBNull(8))
-					{
-						aux.Precio = lector.GetDecimal(8);
-					}
+
+					if (!(lector["Precio"] is DBNull))
+						aux.Precio = (decimal)lector["Precio"];
 
 					aux.Marca = new Marca();
-					aux.Marca.Id = lector.GetInt32(6);
-					aux.Marca.Descripcion = lector.GetString(4);
+					aux.Marca.Id = (int)lector["IdMarca"];
+					aux.Marca.Descripcion = (string)lector["Marca"];
 
 					aux.Categoria = new Categoria();
-					aux.Categoria.Id = lector.GetInt32(7);
-					aux.Categoria.Descripcion = lector.GetString(5);
+					aux.Categoria.Id = (int)lector["IdCategoria"];
+					aux.Categoria.Descripcion = (string)lector["Categoria"];
 
+					// Aquí se asigna solo la primera imagen válida
+					aux.UrlImagen = ObtenerPrimeraImagenValida(aux.Id);
+
+					// Después de crear el objeto Articulo aux
+					aux.Imagenes = ObtenerImagenesPorId(aux.Id); 
 					lista.Add(aux);
 				}
 				return lista;
@@ -68,18 +69,13 @@ namespace TPWinForm_equipo_22A
 					conexion.Close();
 			}
 		}
-		public void agregar(Articulo nuevo)
+		public int agregar(Articulo nuevo)
 		{
-			SqlConnection conexion = new SqlConnection();
-			SqlCommand comando = new SqlCommand();
-			try
+			int idGenerado = 0;
+			using (SqlConnection conexion = new SqlConnection("server=.\\SQLEXPRESS; database=CATALOGO_P3_DB; integrated security=true"))
 			{
-				conexion.ConnectionString = "server=.\\SQLEXPRESS; database=CATALOGO_P3_DB; integrated security=true";
-				comando.CommandType = System.Data.CommandType.Text;
-				comando.CommandText = "INSERT into ARTICULOS (Codigo, Nombre, Descripcion, IdMarca, IdCategoria, Precio) values (@codigo, @nombre, @descripcion, @idMarca, @idCategoria, @precio)";
-				comando.Connection = conexion;
-
-				// Pasamos los parámetros
+				string query = "INSERT INTO ARTICULOS (Codigo, Nombre, Descripcion, IdMarca, IdCategoria, Precio) OUTPUT INSERTED.Id VALUES (@codigo, @nombre, @descripcion, @idMarca, @idCategoria, @precio)";
+				SqlCommand comando = new SqlCommand(query, conexion);
 				comando.Parameters.AddWithValue("@codigo", nuevo.Codigo);
 				comando.Parameters.AddWithValue("@nombre", nuevo.Nombre);
 				comando.Parameters.AddWithValue("@descripcion", nuevo.Descripcion);
@@ -88,17 +84,9 @@ namespace TPWinForm_equipo_22A
 				comando.Parameters.AddWithValue("@precio", nuevo.Precio);
 
 				conexion.Open();
-				comando.ExecuteNonQuery();
-
+				idGenerado = (int)comando.ExecuteScalar();
 			}
-			catch (Exception)
-			{
-				throw;
-			}
-			finally
-			{
-				conexion.Close();
-			}
+			return idGenerado;
 		}
 
 		//logica para modificar 
@@ -215,7 +203,78 @@ namespace TPWinForm_equipo_22A
 			return articulo;
 		}
 
+		public string ObtenerPrimeraImagenValida(int idArticulo)
+		{
+			using (SqlConnection conexion = new SqlConnection("server=.\\SQLEXPRESS; database=CATALOGO_P3_DB; integrated security=true"))
+			{
+				string query = "SELECT TOP 1 ImagenUrl FROM IMAGENES WHERE IdArticulo = @idArticulo";
+				SqlCommand comando = new SqlCommand(query, conexion);
+				comando.Parameters.AddWithValue("@idArticulo", idArticulo);
+				conexion.Open();
+				SqlDataReader lector = comando.ExecuteReader();
+				if (lector.Read())
+				{
+					return (string)lector["ImagenUrl"];
+				}
+			}
+			return null;
+		}
 
+		public List<string> ObtenerImagenesPorId(int idArticulo)
+		{
+			var imagenes = new List<string>();
+			using (var conexion = new SqlConnection("server=.\\SQLEXPRESS; database=CATALOGO_P3_DB; integrated security=true"))
+			{
+				var query = "SELECT ImagenUrl FROM IMAGENES WHERE IdArticulo = @idArticulo";
+				var comando = new SqlCommand(query, conexion);
+				comando.Parameters.AddWithValue("@idArticulo", idArticulo);
+				conexion.Open();
+				var lector = comando.ExecuteReader();
+				while (lector.Read())
+				{
+					imagenes.Add((string)lector["ImagenUrl"]);
+				}
+			}
+			return imagenes;
+		}
 
+		public static bool EsImagenValida(string url)
+		{
+			try
+			{
+				var request = System.Net.WebRequest.Create(url);
+				request.Method = "GET";
+				request.Timeout = 3000; // 3 segundos
+				using (var response = request.GetResponse())
+				{
+					return ((System.Net.HttpWebResponse)response).StatusCode == System.Net.HttpStatusCode.OK;
+				}
+			}
+			catch
+			{
+				return false;
+			}
+		}
+		
+		public void guardarImagenes(int idArticulo, List<string> imagenes)
+		{
+			using (SqlConnection conexion = new SqlConnection("server=.\\SQLEXPRESS; database=CATALOGO_P3_DB; integrated security=true"))
+			{
+				conexion.Open();
+				// Elimina las imágenes anteriores
+				var comandoDelete = new SqlCommand("DELETE FROM IMAGENES WHERE IdArticulo = @idArticulo", conexion);
+				comandoDelete.Parameters.AddWithValue("@idArticulo", idArticulo);
+				comandoDelete.ExecuteNonQuery();
+
+				// Inserta las nuevas imágenes
+				foreach (var url in imagenes)
+				{
+					var comandoInsert = new SqlCommand("INSERT INTO IMAGENES (IdArticulo, ImagenUrl) VALUES (@idArticulo, @url)", conexion);
+					comandoInsert.Parameters.AddWithValue("@idArticulo", idArticulo);
+					comandoInsert.Parameters.AddWithValue("@url", url);
+					comandoInsert.ExecuteNonQuery();
+				}
+			}
+		}
 	}
 }

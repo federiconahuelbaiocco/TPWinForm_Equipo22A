@@ -14,7 +14,8 @@ namespace TPWinForm_equipo_22A
 	{
 
 		private Articulo articulo = null; // Variable para guardar el artículo que se está gestionando
-
+		private int indiceImagenActual = 0;
+		private Articulo articuloActual = null;
 
 		// Constructor para agregar 
 		public frmGestionArticulo()
@@ -22,6 +23,9 @@ namespace TPWinForm_equipo_22A
 			InitializeComponent();
 			// Cuando no se le pasa un artículo, creo uno nuevo.
 			articulo = new Articulo();
+			btnAnteriorImagen.Enabled = false;
+			btnSiguienteImagen.Enabled = false;
+			btnQuitarImagen.Enabled = false;
 		}
 
 		// Constructor para modificar: recibe el artículo
@@ -30,6 +34,8 @@ namespace TPWinForm_equipo_22A
 			InitializeComponent();
 			// aca guardo el articulo que recibo
 			this.articulo = articulo;
+			btnAnteriorImagen.Enabled = true;
+			btnSiguienteImagen.Enabled = true;
 		}
 
 		private void frmGestionArticulo_Load(object sender, EventArgs e)
@@ -88,6 +94,10 @@ namespace TPWinForm_equipo_22A
 			{
 				MessageBox.Show(ex.ToString());
 			}
+
+			articuloActual = articulo;
+			indiceImagenActual = 0;
+			MostrarImagenActual();
 		}
 
 		private void btnCancelar_Click(object sender, EventArgs e)
@@ -113,15 +123,27 @@ namespace TPWinForm_equipo_22A
 				articulo.Marca = (Marca)cboMarca.SelectedItem;
 				articulo.Categoria = (Categoria)cboCategoria.SelectedItem;
 
+				// Agregar la imagen del TextBox si no está vacía y no está ya en la lista
+				string url = txtUrlImagen.Text.Trim();
+				if (!string.IsNullOrEmpty(url))
+				{
+					if (articulo.Imagenes == null)
+						articulo.Imagenes = new List<string>();
+					if (!articulo.Imagenes.Contains(url))
+						articulo.Imagenes.Add(url);
+				}
+
 				// Si el ID del artículo es 0, es nuevo Si tiene ID, significa que ya existe entonces lo estoy modificando modificando.
 				if (articulo.Id != 0)
 				{
 					negocio.modificar(articulo);
+					negocio.guardarImagenes(articulo.Id, articulo.Imagenes); // <-- Agrega esta línea
 					MessageBox.Show("Modificado exitosamente");
 				}
 				else
 				{
-					negocio.agregar(articulo);
+					int nuevoId = negocio.agregar(articulo);
+					negocio.guardarImagenes(nuevoId, articulo.Imagenes);
 					MessageBox.Show("Agregado exitosamente");
 				}
 
@@ -138,6 +160,95 @@ namespace TPWinForm_equipo_22A
 		private void btnVolver_Click(object sender, EventArgs e)
 		{
 			this.Close();
+		}
+
+		private void cargarImagen(string url)
+		{
+			try
+			{
+				// Intenta cargar la imagen desde la URL en el PictureBox
+				pbxGestionImagen.Load(url);
+			}
+			catch (Exception)
+			{
+				// Si la URL es inválida, usa una imagen local
+				pbxGestionImagen.Load("imagenes/imagenDefecto.jpg");
+			}
+		}
+
+		private void txtUrlImagen_Leave(object sender, EventArgs e)
+		{
+			// Carga la imagen solo cuando el usuario sale del TextBox
+			cargarImagen(txtUrlImagen.Text);
+		}
+
+		private void btnAnteriorImagen_Click(object sender, EventArgs e)
+		{
+			if (articuloActual != null && articuloActual.Imagenes.Count > 0)
+			{
+				indiceImagenActual--;
+				if (indiceImagenActual < 0)
+					indiceImagenActual = articuloActual.Imagenes.Count - 1;
+				MostrarImagenActual();
+			}
+		}
+
+		private void btnSiguienteImagen_Click(object sender, EventArgs e)
+		{
+			if (articuloActual != null && articuloActual.Imagenes.Count > 0)
+			{
+				indiceImagenActual++;
+				if (indiceImagenActual >= articuloActual.Imagenes.Count)
+					indiceImagenActual = 0;
+				MostrarImagenActual();
+			}
+		}
+
+		private void MostrarImagenActual()
+		{
+			if (articulo == null || articulo.Imagenes == null || articulo.Imagenes.Count == 0)
+			{
+				pbxGestionImagen.Load("imagenes/imagenDefecto.jpg");
+				return;
+			}
+
+			try
+			{
+				pbxGestionImagen.Load(articulo.Imagenes[indiceImagenActual]);
+			}
+			catch
+			{
+				pbxGestionImagen.Load("imagenes/imagenDefecto.jpg");
+			}
+		}
+
+		private void btnAgregarImagen_Click(object sender, EventArgs e)
+		{
+			string url = txtUrlImagen.Text.Trim();
+			if (!string.IsNullOrEmpty(url))
+			{
+				if (articulo.Imagenes == null)
+					articulo.Imagenes = new List<string>();
+				articulo.Imagenes.Add(url);
+				indiceImagenActual = articulo.Imagenes.Count - 1;
+				MostrarImagenActual();
+				txtUrlImagen.Clear();
+			}
+			else
+			{
+				MessageBox.Show("Ingrese una URL de imagen válida.");
+			}
+		}
+
+		private void btnQuitarImagen_Click(object sender, EventArgs e)
+		{
+			if (articulo.Imagenes != null && articulo.Imagenes.Count > 0)
+			{
+				articulo.Imagenes.RemoveAt(indiceImagenActual);
+				if (indiceImagenActual >= articulo.Imagenes.Count)
+					indiceImagenActual = articulo.Imagenes.Count - 1;
+				MostrarImagenActual();
+			}
 		}
 	}
 }
