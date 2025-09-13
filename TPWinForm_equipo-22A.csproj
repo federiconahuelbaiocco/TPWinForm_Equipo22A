@@ -74,6 +74,18 @@
     <Compile Include="frmGestionArticulo.Designer.cs">
       <DependentUpon>frmGestionArticulo.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmGestionCategoria.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmGestionCategoria.Designer.cs">
+      <DependentUpon>frmGestionCategoria.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmGestionMarca.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmGestionMarca.Designer.cs">
+      <DependentUpon>frmGestionMarca.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmMarcas.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -96,6 +108,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmGestionArticulo.resx">
       <DependentUpon>frmGestionArticulo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmGestionCategoria.resx">
+      <DependentUpon>frmGestionCategoria.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmGestionMarca.resx">
+      <DependentUpon>frmGestionMarca.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmMarcas.resx">
       <DependentUpon>frmMarcas.cs</DependentUpon>

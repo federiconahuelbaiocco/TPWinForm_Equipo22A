@@ -107,7 +107,6 @@
 			this.btnAdminCategorias.TabIndex = 7;
 			this.btnAdminCategorias.Text = "Categorias";
 			this.btnAdminCategorias.UseVisualStyleBackColor = true;
-			this.btnAdminCategorias.Click += new System.EventHandler(this.btnCategorias_Click);
 			// 
 			// frmArticulos
 			// 

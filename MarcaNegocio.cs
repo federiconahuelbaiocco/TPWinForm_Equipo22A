@@ -34,9 +34,9 @@ namespace TPWinForm_equipo_22A
 					lista.Add(aux);
 				}
 			}
-			catch (Exception ex)
+			catch (Exception)
 			{
-				throw ex;
+				throw;
 			}
 			finally
 			{
@@ -46,6 +46,85 @@ namespace TPWinForm_equipo_22A
 					conexion.Close();
 			}
 			return lista;
+		}
+
+		public void agregar(Marca nueva)
+		{
+			// Lógica para INSERT en la tabla MARCAS
+			// Similar a ArticuloNegocio.agregar()
+			SqlConnection conexion = new SqlConnection();
+			SqlCommand comando = new SqlCommand();
+			try
+			{
+				conexion.ConnectionString = "server=.\\SQLEXPRESS; database=CATALOGO_P3_DB; integrated security=true";
+				comando.CommandType = System.Data.CommandType.Text;
+				comando.CommandText = "INSERT into MARCAS (Descripcion) values (@descripcion)";
+				comando.Connection = conexion;
+				comando.Parameters.AddWithValue("@descripcion", nueva.Descripcion);
+				conexion.Open();
+				comando.ExecuteNonQuery();
+			}
+			catch (Exception)
+			{
+				throw;
+			}
+			finally
+			{
+				conexion.Close();
+			}
+		}
+
+		public void modificar(Marca marca)
+		{
+			// Lógica para UPDATE en la tabla MARCAS
+			// Similar a ArticuloNegocio.modificar()
+			SqlConnection conexion = new SqlConnection();
+			SqlCommand comando = new SqlCommand();
+			try
+			{
+				conexion.ConnectionString = "server=.\\SQLEXPRESS; database=CATALOGO_P3_DB; integrated security=true";
+				comando.CommandType = System.Data.CommandType.Text;
+				comando.CommandText = "UPDATE MARCAS set Descripcion = @descripcion WHERE Id = @id";
+				comando.Connection = conexion;
+				comando.Parameters.AddWithValue("@descripcion", marca.Descripcion);
+				comando.Parameters.AddWithValue("@id", marca.Id);
+				conexion.Open();
+				comando.ExecuteNonQuery();
+			}
+			catch (Exception)
+			{
+				throw;
+			}
+			finally
+			{
+				conexion.Close();
+			}
+		}
+
+		public void eliminar(int id)
+		{
+			// Lógica para DELETE en la tabla MARCAS
+			// Similar a ArticuloNegocio.eliminar()
+			SqlConnection conexion = new SqlConnection();
+			SqlCommand comando = new SqlCommand();
+			try
+			{
+				conexion.ConnectionString = "server=.\\SQLEXPRESS; database=CATALOGO_P3_DB; integrated security=true";
+				comando.CommandType = System.Data.CommandType.Text;
+				comando.CommandText = "DELETE FROM MARCAS WHERE Id = @id";
+				comando.Connection = conexion;
+				comando.Parameters.AddWithValue("@id", id);
+				conexion.Open();
+				comando.ExecuteNonQuery();
+			}
+			catch (Exception)
+			{
+				throw;
+			}
+			finally
+			{
+				conexion.Close();
+			}
 		}
 	}
 }

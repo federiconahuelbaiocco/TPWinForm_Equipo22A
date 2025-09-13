@@ -20,7 +20,9 @@ namespace TPWinForm_equipo_22A
 			{
 				conexion.ConnectionString = "server=.\\SQLEXPRESS; database=CATALOGO_P3_DB; integrated security=true";
 				comando.CommandType = System.Data.CommandType.Text;
-				comando.CommandText = "SELECT Id, Codigo, Nombre, Descripcion, IdMarca, IdCategoria, Precio FROM ARTICULOS";
+
+				// Usamos el JOIN para obtener las descripciones de las marcas y categorías.
+				comando.CommandText = "SELECT A.Id, A.Codigo, A.Nombre, A.Descripcion, M.Descripcion, C.Descripcion, A.IdMarca, A.IdCategoria, A.Precio FROM ARTICULOS A, MARCAS M, CATEGORIAS C WHERE A.IdMarca = M.Id AND A.IdCategoria = C.Id";
 				comando.Connection = conexion;
 
 				conexion.Open();
@@ -29,14 +31,26 @@ namespace TPWinForm_equipo_22A
 				while (lector.Read())
 				{
 					Articulo aux = new Articulo();
+
+					// Asignamos las propiedades usando el índice de cada columna
 					aux.Id = lector.GetInt32(0);
 					aux.Codigo = lector.GetString(1);
 					aux.Nombre = lector.GetString(2);
 					aux.Descripcion = lector.GetString(3);
-					aux.Precio = lector.GetDecimal(6);
 
-					// Aquí tendrás que asignar la marca y la categoría.
-					// Lo veremos en el siguiente paso.
+					// verificamos si el precio es nulo antes de asignarlo
+					if (!lector.IsDBNull(8))
+					{
+						aux.Precio = lector.GetDecimal(8);
+					}
+
+					aux.Marca = new Marca();
+					aux.Marca.Id = lector.GetInt32(6);
+					aux.Marca.Descripcion = lector.GetString(4);
+
+					aux.Categoria = new Categoria();
+					aux.Categoria.Id = lector.GetInt32(7);
+					aux.Categoria.Descripcion = lector.GetString(5);
 
 					lista.Add(aux);
 				}
@@ -150,5 +164,58 @@ namespace TPWinForm_equipo_22A
 				conexion.Close();
 			}
 		}
+
+		public Articulo obtenerPorId(int id)
+		{
+			Articulo articulo = null;
+			SqlConnection conexion = new SqlConnection();
+			SqlCommand comando = new SqlCommand();
+			SqlDataReader lector = null;
+
+			try
+			{
+				conexion.ConnectionString = "server=.\\SQLEXPRESS; database=CATALOGO_P3_DB; integrated security=true";
+				comando.CommandType = System.Data.CommandType.Text;
+				comando.CommandText = "SELECT A.Id, A.Codigo, A.Nombre, A.Descripcion, A.Precio, M.Id AS IdMarca, M.Descripcion AS Marca, C.Id AS IdCategoria, C.Descripcion AS Categoria FROM ARTICULOS A INNER JOIN MARCAS M ON A.IdMarca = M.Id INNER JOIN CATEGORIAS C ON A.IdCategoria = C.Id WHERE A.Id = @id";
+				comando.Connection = conexion;
+				comando.Parameters.AddWithValue("@id", id);
+
+				conexion.Open();
+				lector = comando.ExecuteReader();
+
+				if (lector.Read())
+				{
+					articulo = new Articulo();
+					articulo.Id = (int)lector["Id"];
+					articulo.Codigo = (string)lector["Codigo"];
+					articulo.Nombre = (string)lector["Nombre"];
+					articulo.Descripcion = (string)lector["Descripcion"];
+					articulo.Precio = (decimal)lector["Precio"];
+
+					articulo.Marca = new Marca();
+					articulo.Marca.Id = (int)lector["IdMarca"];
+					articulo.Marca.Descripcion = (string)lector["Marca"];
+
+					articulo.Categoria = new Categoria();
+					articulo.Categoria.Id = (int)lector["IdCategoria"];
+					articulo.Categoria.Descripcion = (string)lector["Categoria"];
+				}
+			}
+			catch (Exception ex)
+			{
+				throw new Exception("Error al obtener el artículo por ID", ex);
+			}
+			finally
+			{
+				if (lector != null)
+					lector.Close();
+				if (conexion != null)
+					conexion.Close();
+			}
+			return articulo;
+		}
+
+
+
 	}
 }

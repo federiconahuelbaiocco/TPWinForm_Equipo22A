@@ -28,10 +28,6 @@
 		/// </summary>
 		private void InitializeComponent()
 		{
-			this.btnCancelar = new System.Windows.Forms.Button();
-			this.btnAceptar = new System.Windows.Forms.Button();
-			this.cboCategoria = new System.Windows.Forms.ComboBox();
-			this.cboMarca = new System.Windows.Forms.ComboBox();
 			this.lblPrecio = new System.Windows.Forms.Label();
 			this.lblDescripcion = new System.Windows.Forms.Label();
 			this.lblNombre = new System.Windows.Forms.Label();
@@ -40,44 +36,14 @@
 			this.txtNombre = new System.Windows.Forms.TextBox();
 			this.txtCodigo = new System.Windows.Forms.TextBox();
 			this.txtDescripcion = new System.Windows.Forms.TextBox();
+			this.btnVolver = new System.Windows.Forms.Button();
+			this.lblMarca = new System.Windows.Forms.Label();
+			this.lblCategoria = new System.Windows.Forms.Label();
+			this.lblId = new System.Windows.Forms.Label();
+			this.txtId = new System.Windows.Forms.TextBox();
+			this.cboMarca = new System.Windows.Forms.ComboBox();
+			this.cboCategoria = new System.Windows.Forms.ComboBox();
 			this.SuspendLayout();
-			// 
-			// btnCancelar
-			// 
-			this.btnCancelar.Location = new System.Drawing.Point(428, 332);
-			this.btnCancelar.Name = "btnCancelar";
-			this.btnCancelar.Size = new System.Drawing.Size(75, 23);
-			this.btnCancelar.TabIndex = 24;
-			this.btnCancelar.Text = "Cancelar";
-			this.btnCancelar.UseVisualStyleBackColor = true;
-			this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
-			// 
-			// btnAceptar
-			// 
-			this.btnAceptar.Location = new System.Drawing.Point(221, 332);
-			this.btnAceptar.Name = "btnAceptar";
-			this.btnAceptar.Size = new System.Drawing.Size(75, 23);
-			this.btnAceptar.TabIndex = 23;
-			this.btnAceptar.Text = "Aceptar";
-			this.btnAceptar.UseVisualStyleBackColor = true;
-			// 
-			// cboCategoria
-			// 
-			this.cboCategoria.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-			this.cboCategoria.FormattingEnabled = true;
-			this.cboCategoria.Location = new System.Drawing.Point(534, 152);
-			this.cboCategoria.Name = "cboCategoria";
-			this.cboCategoria.Size = new System.Drawing.Size(121, 21);
-			this.cboCategoria.TabIndex = 22;
-			// 
-			// cboMarca
-			// 
-			this.cboMarca.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-			this.cboMarca.FormattingEnabled = true;
-			this.cboMarca.Location = new System.Drawing.Point(534, 102);
-			this.cboMarca.Name = "cboMarca";
-			this.cboMarca.Size = new System.Drawing.Size(121, 21);
-			this.cboMarca.TabIndex = 21;
 			// 
 			// lblPrecio
 			// 
@@ -147,15 +113,81 @@
 			this.txtDescripcion.Size = new System.Drawing.Size(100, 20);
 			this.txtDescripcion.TabIndex = 13;
 			// 
+			// btnVolver
+			// 
+			this.btnVolver.Location = new System.Drawing.Point(329, 342);
+			this.btnVolver.Name = "btnVolver";
+			this.btnVolver.Size = new System.Drawing.Size(75, 23);
+			this.btnVolver.TabIndex = 23;
+			this.btnVolver.Text = "Volver";
+			this.btnVolver.UseVisualStyleBackColor = true;
+			this.btnVolver.Click += new System.EventHandler(this.btnVolver_Click);
+			// 
+			// lblMarca
+			// 
+			this.lblMarca.AutoSize = true;
+			this.lblMarca.Location = new System.Drawing.Point(422, 121);
+			this.lblMarca.Name = "lblMarca";
+			this.lblMarca.Size = new System.Drawing.Size(37, 13);
+			this.lblMarca.TabIndex = 26;
+			this.lblMarca.Text = "Marca";
+			// 
+			// lblCategoria
+			// 
+			this.lblCategoria.AutoSize = true;
+			this.lblCategoria.Location = new System.Drawing.Point(422, 195);
+			this.lblCategoria.Name = "lblCategoria";
+			this.lblCategoria.Size = new System.Drawing.Size(52, 13);
+			this.lblCategoria.TabIndex = 27;
+			this.lblCategoria.Text = "Categoria";
+			// 
+			// lblId
+			// 
+			this.lblId.AutoSize = true;
+			this.lblId.Location = new System.Drawing.Point(422, 247);
+			this.lblId.Name = "lblId";
+			this.lblId.Size = new System.Drawing.Size(18, 13);
+			this.lblId.TabIndex = 28;
+			this.lblId.Text = "ID";
+			// 
+			// txtId
+			// 
+			this.txtId.Location = new System.Drawing.Point(493, 247);
+			this.txtId.Name = "txtId";
+			this.txtId.ReadOnly = true;
+			this.txtId.Size = new System.Drawing.Size(100, 20);
+			this.txtId.TabIndex = 29;
+			// 
+			// cboMarca
+			// 
+			this.cboMarca.Enabled = false;
+			this.cboMarca.FormattingEnabled = true;
+			this.cboMarca.Location = new System.Drawing.Point(502, 121);
+			this.cboMarca.Name = "cboMarca";
+			this.cboMarca.Size = new System.Drawing.Size(121, 21);
+			this.cboMarca.TabIndex = 30;
+			// 
+			// cboCategoria
+			// 
+			this.cboCategoria.Enabled = false;
+			this.cboCategoria.FormattingEnabled = true;
+			this.cboCategoria.Location = new System.Drawing.Point(502, 187);
+			this.cboCategoria.Name = "cboCategoria";
+			this.cboCategoria.Size = new System.Drawing.Size(121, 21);
+			this.cboCategoria.TabIndex = 31;
+			// 
 			// frmDetalleArticulo
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(800, 450);
-			this.Controls.Add(this.btnCancelar);
-			this.Controls.Add(this.btnAceptar);
 			this.Controls.Add(this.cboCategoria);
 			this.Controls.Add(this.cboMarca);
+			this.Controls.Add(this.txtId);
+			this.Controls.Add(this.lblId);
+			this.Controls.Add(this.lblCategoria);
+			this.Controls.Add(this.lblMarca);
+			this.Controls.Add(this.btnVolver);
 			this.Controls.Add(this.lblPrecio);
 			this.Controls.Add(this.lblDescripcion);
 			this.Controls.Add(this.lblNombre);
@@ -166,17 +198,13 @@
 			this.Controls.Add(this.txtDescripcion);
 			this.Name = "frmDetalleArticulo";
 			this.Text = "frmDetallesArticulo";
+			this.Load += new System.EventHandler(this.frmDetalleArticulo_Load_1);
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
 		}
 
 		#endregion
-
-		private System.Windows.Forms.Button btnCancelar;
-		private System.Windows.Forms.Button btnAceptar;
-		private System.Windows.Forms.ComboBox cboCategoria;
-		private System.Windows.Forms.ComboBox cboMarca;
 		private System.Windows.Forms.Label lblPrecio;
 		private System.Windows.Forms.Label lblDescripcion;
 		private System.Windows.Forms.Label lblNombre;
@@ -185,5 +213,12 @@
 		private System.Windows.Forms.TextBox txtNombre;
 		private System.Windows.Forms.TextBox txtCodigo;
 		private System.Windows.Forms.TextBox txtDescripcion;
+		private System.Windows.Forms.Button btnVolver;
+		private System.Windows.Forms.Label lblMarca;
+		private System.Windows.Forms.Label lblCategoria;
+		private System.Windows.Forms.Label lblId;
+		private System.Windows.Forms.TextBox txtId;
+		private System.Windows.Forms.ComboBox cboMarca;
+		private System.Windows.Forms.ComboBox cboCategoria;
 	}
 }

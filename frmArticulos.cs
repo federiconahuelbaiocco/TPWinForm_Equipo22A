@@ -33,6 +33,12 @@ namespace TPWinForm_equipo_22A
 			{
 				listaArticulos = negocio.Listar();
 				dgvArticulos.DataSource = listaArticulos;
+
+				//aca con columns accedo a las columnas de la grilla y le digo que no me muestre las que quiero ocultar con visible = false
+				dgvArticulos.Columns["Id"].Visible = false;
+				dgvArticulos.Columns["Descripcion"].Visible = false;
+				dgvArticulos.Columns["Marca"].Visible = false;
+				dgvArticulos.Columns["Categoria"].Visible = false;
 			}
 			catch (Exception ex)
 			{
@@ -75,15 +81,27 @@ namespace TPWinForm_equipo_22A
 
 		private void btnDetalle_Click(object sender, EventArgs e)
 		{
-			frmDetalleArticulo ventana = new frmDetalleArticulo();
-			ventana.ShowDialog();
+			// Declaro una variable local para el articulo seleccionado
+			Articulo seleccionado;
+			// Verifico si hay una fila seleccionada en la grilla.
+			if (dgvArticulos.CurrentRow != null)
+			{
+
+				// Tomo el objeto completo que está en la fila seleccionada
+				seleccionado = (Articulo)dgvArticulos.CurrentRow.DataBoundItem;
+
+				frmDetalleArticulo detalle = new frmDetalleArticulo(seleccionado);
+				detalle.ShowDialog();
+
+				cargarGrilla();
+
+			}
+			else
+			{
+				MessageBox.Show("Por favor, seleccione un artículo para ver los detalles.");
+			}
 		}
 
-		private void btnCategorias_Click(object sender, EventArgs e)
-		{
-			frmCategorias ventana = new frmCategorias();
-			ventana.ShowDialog();
-		}
 
 		private void btnMarcas_Click(object sender, EventArgs e)
 		{
@@ -126,5 +144,7 @@ namespace TPWinForm_equipo_22A
 				MessageBox.Show(ex.ToString());
 			}
 		}
+
+		
 	}
 }

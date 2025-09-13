@@ -13,7 +13,8 @@ namespace TPWinForm_equipo_22A
 	public partial class frmGestionArticulo : Form
 	{
 
-		private Articulo articulo = null;
+		private Articulo articulo = null; // Variable para guardar el artículo que se está gestionando
+
 
 		// Constructor para agregar 
 		public frmGestionArticulo()
@@ -38,22 +39,33 @@ namespace TPWinForm_equipo_22A
 
 			try
 			{
-				// Primero pido la lista completa de marcas a la base de datos y las guardo en una lista 
+				// Primero pido la lista completa de marcas a la base de datos y las guardo en una lista
 				List<Marca> listaMarcas = marcaNegocio.listar();
 				// luego, uso  LINQ (Language-Integrated Query) para filtrar los repetidos: característica de C# que permite consultar y manipular colecciones de datos
 				// (como listas, arrays, bases de datos, etc.) usando una sintaxis similar a SQL, pero integrada en el lenguaje.
 				// con GroupBy agrupo las marcas por su descripción .
 				// tomo la primera de cada grupo para eliminar los repetidos con select (g.First).
 				// se la asigno al ComboBox para que muestre solo una vez cada marca.
+
+				// **--- Agregamos estas líneas para configurar el ComboBox ---**
 				cboMarca.DataSource = listaMarcas.GroupBy(x => x.Descripcion).Select(g => g.First()).ToList();
+				cboMarca.ValueMember = "Id";
+				cboMarca.DisplayMember = "Descripcion";
+				// **--- Fin de la corrección ---**
+
 
 				// hago lo mismo para las categorías.
 				// Así el ComboBox solo muestra una vez cada categoría.
 				List<Categoria> listaCategorias = categoriaNegocio.listar();
+
+				// **--- Agregamos estas líneas para configurar el ComboBox ---**
 				cboCategoria.DataSource = listaCategorias.GroupBy(x => x.Descripcion).Select(g => g.First()).ToList();
+				cboCategoria.ValueMember = "Id";
+				cboCategoria.DisplayMember = "Descripcion";
+				// **--- Fin de la corrección ---**
+
 				// https://stackoverflow.com/questions/19012986/how-to-get-first-record-in-each-group-using-linq referencia para entender el  LINQ
-				
-				
+
 				// Verifico si tengo un artículo para modificar
 				if (articulo != null && articulo.Id != 0)
 				{
