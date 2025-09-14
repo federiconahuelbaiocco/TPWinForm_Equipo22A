@@ -68,9 +68,6 @@ namespace TPWinForm_equipo_22A
 				cboCategoria.DataSource = listaCategorias.GroupBy(x => x.Descripcion).Select(g => g.First()).ToList();
 				cboCategoria.ValueMember = "Id";
 				cboCategoria.DisplayMember = "Descripcion";
-				// **--- Fin de la corrección ---**
-
-				// https://stackoverflow.com/questions/19012986/how-to-get-first-record-in-each-group-using-linq referencia para entender el  LINQ
 
 				// Verifico si tengo un artículo para modificar
 				if (articulo != null && articulo.Id != 0)
