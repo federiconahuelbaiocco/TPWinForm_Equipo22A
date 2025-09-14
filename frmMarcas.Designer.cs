@@ -38,7 +38,7 @@
 			// 
 			// btnAgregar
 			// 
-			this.btnAgregar.Location = new System.Drawing.Point(56, 63);
+			this.btnAgregar.Location = new System.Drawing.Point(56, 37);
 			this.btnAgregar.Name = "btnAgregar";
 			this.btnAgregar.Size = new System.Drawing.Size(75, 23);
 			this.btnAgregar.TabIndex = 10;
@@ -48,7 +48,7 @@
 			// 
 			// btnModificar
 			// 
-			this.btnModificar.Location = new System.Drawing.Point(242, 63);
+			this.btnModificar.Location = new System.Drawing.Point(56, 120);
 			this.btnModificar.Name = "btnModificar";
 			this.btnModificar.Size = new System.Drawing.Size(75, 23);
 			this.btnModificar.TabIndex = 11;
@@ -58,7 +58,7 @@
 			// 
 			// btnEliminar
 			// 
-			this.btnEliminar.Location = new System.Drawing.Point(424, 63);
+			this.btnEliminar.Location = new System.Drawing.Point(56, 216);
 			this.btnEliminar.Name = "btnEliminar";
 			this.btnEliminar.Size = new System.Drawing.Size(75, 23);
 			this.btnEliminar.TabIndex = 12;
@@ -72,16 +72,16 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.dgvMarcas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-			this.dgvMarcas.Location = new System.Drawing.Point(12, 124);
-			this.dgvMarcas.MaximumSize = new System.Drawing.Size(745, 465);
-			this.dgvMarcas.MinimumSize = new System.Drawing.Size(745, 200);
+			this.dgvMarcas.Location = new System.Drawing.Point(177, 37);
+			this.dgvMarcas.MaximumSize = new System.Drawing.Size(260, 300);
+			this.dgvMarcas.MinimumSize = new System.Drawing.Size(260, 300);
 			this.dgvMarcas.Name = "dgvMarcas";
-			this.dgvMarcas.Size = new System.Drawing.Size(745, 465);
+			this.dgvMarcas.Size = new System.Drawing.Size(260, 300);
 			this.dgvMarcas.TabIndex = 13;
 			// 
 			// btnVolver
 			// 
-			this.btnVolver.Location = new System.Drawing.Point(636, 63);
+			this.btnVolver.Location = new System.Drawing.Point(56, 314);
 			this.btnVolver.Name = "btnVolver";
 			this.btnVolver.Size = new System.Drawing.Size(75, 23);
 			this.btnVolver.TabIndex = 14;
@@ -93,14 +93,15 @@
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(784, 661);
+			this.ClientSize = new System.Drawing.Size(484, 361);
 			this.Controls.Add(this.btnVolver);
 			this.Controls.Add(this.dgvMarcas);
 			this.Controls.Add(this.btnEliminar);
 			this.Controls.Add(this.btnModificar);
 			this.Controls.Add(this.btnAgregar);
-			this.MaximumSize = new System.Drawing.Size(800, 700);
-			this.MinimumSize = new System.Drawing.Size(800, 400);
+			this.MaximizeBox = false;
+			this.MaximumSize = new System.Drawing.Size(500, 400);
+			this.MinimumSize = new System.Drawing.Size(500, 400);
 			this.Name = "frmMarcas";
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
 			this.Text = "frmMarcas";

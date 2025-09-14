@@ -36,7 +36,7 @@
 			// 
 			// btnCancelar
 			// 
-			this.btnCancelar.Location = new System.Drawing.Point(355, 196);
+			this.btnCancelar.Location = new System.Drawing.Point(164, 150);
 			this.btnCancelar.Name = "btnCancelar";
 			this.btnCancelar.Size = new System.Drawing.Size(75, 23);
 			this.btnCancelar.TabIndex = 0;
@@ -46,7 +46,7 @@
 			// 
 			// btnAceptar
 			// 
-			this.btnAceptar.Location = new System.Drawing.Point(252, 196);
+			this.btnAceptar.Location = new System.Drawing.Point(30, 150);
 			this.btnAceptar.Name = "btnAceptar";
 			this.btnAceptar.Size = new System.Drawing.Size(75, 23);
 			this.btnAceptar.TabIndex = 1;
@@ -57,7 +57,7 @@
 			// lblDescripcion
 			// 
 			this.lblDescripcion.AutoSize = true;
-			this.lblDescripcion.Location = new System.Drawing.Point(211, 122);
+			this.lblDescripcion.Location = new System.Drawing.Point(5, 62);
 			this.lblDescripcion.Name = "lblDescripcion";
 			this.lblDescripcion.Size = new System.Drawing.Size(63, 13);
 			this.lblDescripcion.TabIndex = 2;
@@ -65,21 +65,26 @@
 			// 
 			// txtDescripcion
 			// 
-			this.txtDescripcion.Location = new System.Drawing.Point(315, 115);
+			this.txtDescripcion.Location = new System.Drawing.Point(88, 55);
+			this.txtDescripcion.MaxLength = 50;
 			this.txtDescripcion.Name = "txtDescripcion";
-			this.txtDescripcion.Size = new System.Drawing.Size(100, 20);
+			this.txtDescripcion.Size = new System.Drawing.Size(184, 20);
 			this.txtDescripcion.TabIndex = 3;
 			// 
 			// frmGestionCategoria
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(800, 450);
+			this.ClientSize = new System.Drawing.Size(284, 261);
 			this.Controls.Add(this.txtDescripcion);
 			this.Controls.Add(this.lblDescripcion);
 			this.Controls.Add(this.btnAceptar);
 			this.Controls.Add(this.btnCancelar);
+			this.MaximizeBox = false;
+			this.MaximumSize = new System.Drawing.Size(300, 300);
+			this.MinimumSize = new System.Drawing.Size(300, 300);
 			this.Name = "frmGestionCategoria";
+			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
 			this.Text = "frmGestionCategoria";
 			this.Load += new System.EventHandler(this.frmGestionCategoria_Load);
 			this.ResumeLayout(false);

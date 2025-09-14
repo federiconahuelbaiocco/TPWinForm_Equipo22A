@@ -9,6 +9,8 @@ namespace TPWinForm_equipo_22A
 {
 	internal class CategoriaNegocio
 	{
+		// Este método obtiene todas las categorías de la base de datos.
+		// Realiza una consulta SELECT y recorre los resultados para crear objetos Categoria.
 		public List<Categoria> listar()
 		{
 			List<Categoria> lista = new List<Categoria>();
@@ -18,6 +20,7 @@ namespace TPWinForm_equipo_22A
 
 			try
 			{
+				// Se configura la conexión y el comando SQL.
 				conexion.ConnectionString = "server=.\\SQLEXPRESS; database=CATALOGO_P3_DB; integrated security=true";
 				comando.CommandType = System.Data.CommandType.Text;
 				comando.CommandText = "SELECT Id, Descripcion FROM CATEGORIAS";
@@ -25,6 +28,7 @@ namespace TPWinForm_equipo_22A
 				conexion.Open();
 				lector = comando.ExecuteReader();
 
+				// Se recorre cada registro y se crea un objeto Categoria.
 				while (lector.Read())
 				{
 					Categoria aux = new Categoria();
@@ -35,10 +39,12 @@ namespace TPWinForm_equipo_22A
 			}
 			catch (Exception)
 			{
+				// Si ocurre un error, se relanza la excepción.
 				throw;
 			}
 			finally
 			{
+				// Se cierran los recursos de base de datos.
 				if (lector != null)
 					lector.Close();
 				if (conexion != null)
@@ -47,7 +53,8 @@ namespace TPWinForm_equipo_22A
 			return lista;
 		}
 
-		//logica de agregar-modifica-eliminar similar a marcaNegocio leer comentarios de ahi
+		// Este método agrega una nueva categoría a la base de datos.
+		// Recibe un objeto Categoria y ejecuta un INSERT.
 		public void agregar(Categoria nueva)
 		{
 			SqlConnection conexion = new SqlConnection();
@@ -59,9 +66,11 @@ namespace TPWinForm_equipo_22A
 				comando.CommandText = "INSERT into CATEGORIAS (Descripcion) values (@descripcion)";
 				comando.Connection = conexion;
 
+				// Se asigna el valor de la descripción como parámetro.
 				comando.Parameters.AddWithValue("@descripcion", nueva.Descripcion);
 
 				conexion.Open();
+				// ExecuteNonQuery ejecuta el comando SQL sin devolver resultados.
 				comando.ExecuteNonQuery();
 			}
 			catch (Exception)
@@ -75,6 +84,8 @@ namespace TPWinForm_equipo_22A
 			}
 		}
 
+		// Este método modifica una categoría existente en la base de datos.
+		// Recibe un objeto Categoria y actualiza la descripción según el Id.
 		public void modificar(Categoria categoria)
 		{
 			SqlConnection conexion = new SqlConnection();
@@ -83,8 +94,8 @@ namespace TPWinForm_equipo_22A
 			{
 				conexion.ConnectionString = "server=.\\SQLEXPRESS; database=CATALOGO_P3_DB; integrated security=true";
 				comando.CommandType = System.Data.CommandType.Text;
-				comando.CommandText = "UPDATE CATEGORIAS set Descripcion = @descripcion WHERE Id = @id"; //convencion de sql asi el valor de @descripcion será el que tenga categoria.Descripcion,
-																										 //y el de @id el de categoria.Id porque se pasan como parametros
+				// Se actualiza la descripción de la categoría con el Id correspondiente.
+				comando.CommandText = "UPDATE CATEGORIAS set Descripcion = @descripcion WHERE Id = @id";
 				comando.Connection = conexion;
 
 				comando.Parameters.AddWithValue("@descripcion", categoria.Descripcion);
@@ -104,6 +115,7 @@ namespace TPWinForm_equipo_22A
 			}
 		}
 
+		// Este método elimina una categoría de la base de datos según su Id.
 		public void eliminar(int id)
 		{
 			SqlConnection conexion = new SqlConnection();

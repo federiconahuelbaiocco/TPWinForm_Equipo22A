@@ -39,16 +39,16 @@
 			// dgvCategorias
 			// 
 			this.dgvCategorias.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-			this.dgvCategorias.Location = new System.Drawing.Point(39, 149);
-			this.dgvCategorias.MaximumSize = new System.Drawing.Size(745, 465);
-			this.dgvCategorias.MinimumSize = new System.Drawing.Size(745, 465);
+			this.dgvCategorias.Location = new System.Drawing.Point(173, 32);
+			this.dgvCategorias.MaximumSize = new System.Drawing.Size(260, 300);
+			this.dgvCategorias.MinimumSize = new System.Drawing.Size(260, 300);
 			this.dgvCategorias.Name = "dgvCategorias";
-			this.dgvCategorias.Size = new System.Drawing.Size(745, 465);
+			this.dgvCategorias.Size = new System.Drawing.Size(260, 300);
 			this.dgvCategorias.TabIndex = 17;
 			// 
 			// btnEliminar
 			// 
-			this.btnEliminar.Location = new System.Drawing.Point(485, 76);
+			this.btnEliminar.Location = new System.Drawing.Point(44, 200);
 			this.btnEliminar.Name = "btnEliminar";
 			this.btnEliminar.Size = new System.Drawing.Size(75, 23);
 			this.btnEliminar.TabIndex = 16;
@@ -58,7 +58,7 @@
 			// 
 			// btnModificar
 			// 
-			this.btnModificar.Location = new System.Drawing.Point(251, 76);
+			this.btnModificar.Location = new System.Drawing.Point(44, 109);
 			this.btnModificar.Name = "btnModificar";
 			this.btnModificar.Size = new System.Drawing.Size(75, 23);
 			this.btnModificar.TabIndex = 15;
@@ -68,7 +68,7 @@
 			// 
 			// btnAgregar
 			// 
-			this.btnAgregar.Location = new System.Drawing.Point(39, 76);
+			this.btnAgregar.Location = new System.Drawing.Point(44, 32);
 			this.btnAgregar.Name = "btnAgregar";
 			this.btnAgregar.Size = new System.Drawing.Size(75, 23);
 			this.btnAgregar.TabIndex = 14;
@@ -78,7 +78,7 @@
 			// 
 			// btnVolver
 			// 
-			this.btnVolver.Location = new System.Drawing.Point(709, 76);
+			this.btnVolver.Location = new System.Drawing.Point(44, 309);
 			this.btnVolver.Name = "btnVolver";
 			this.btnVolver.Size = new System.Drawing.Size(75, 23);
 			this.btnVolver.TabIndex = 18;
@@ -90,14 +90,14 @@
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(884, 661);
+			this.ClientSize = new System.Drawing.Size(484, 361);
 			this.Controls.Add(this.btnVolver);
 			this.Controls.Add(this.dgvCategorias);
 			this.Controls.Add(this.btnEliminar);
 			this.Controls.Add(this.btnModificar);
 			this.Controls.Add(this.btnAgregar);
-			this.MaximumSize = new System.Drawing.Size(900, 700);
-			this.MinimumSize = new System.Drawing.Size(900, 700);
+			this.MaximumSize = new System.Drawing.Size(500, 400);
+			this.MinimumSize = new System.Drawing.Size(500, 400);
 			this.Name = "frmCategorias";
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
 			this.Text = "frmCategorias";

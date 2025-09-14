@@ -36,15 +36,16 @@
 			// 
 			// txtDescripcion
 			// 
-			this.txtDescripcion.Location = new System.Drawing.Point(215, 112);
+			this.txtDescripcion.Location = new System.Drawing.Point(92, 51);
+			this.txtDescripcion.MaxLength = 50;
 			this.txtDescripcion.Name = "txtDescripcion";
-			this.txtDescripcion.Size = new System.Drawing.Size(100, 20);
+			this.txtDescripcion.Size = new System.Drawing.Size(180, 20);
 			this.txtDescripcion.TabIndex = 0;
 			// 
 			// lblDescripcion
 			// 
 			this.lblDescripcion.AutoSize = true;
-			this.lblDescripcion.Location = new System.Drawing.Point(94, 119);
+			this.lblDescripcion.Location = new System.Drawing.Point(12, 58);
 			this.lblDescripcion.Name = "lblDescripcion";
 			this.lblDescripcion.Size = new System.Drawing.Size(63, 13);
 			this.lblDescripcion.TabIndex = 1;
@@ -52,7 +53,7 @@
 			// 
 			// btnAceptar
 			// 
-			this.btnAceptar.Location = new System.Drawing.Point(81, 202);
+			this.btnAceptar.Location = new System.Drawing.Point(27, 140);
 			this.btnAceptar.Name = "btnAceptar";
 			this.btnAceptar.Size = new System.Drawing.Size(75, 23);
 			this.btnAceptar.TabIndex = 2;
@@ -62,7 +63,7 @@
 			// 
 			// btnCancelar
 			// 
-			this.btnCancelar.Location = new System.Drawing.Point(277, 202);
+			this.btnCancelar.Location = new System.Drawing.Point(164, 140);
 			this.btnCancelar.Name = "btnCancelar";
 			this.btnCancelar.Size = new System.Drawing.Size(75, 23);
 			this.btnCancelar.TabIndex = 3;
@@ -74,12 +75,16 @@
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(800, 450);
+			this.ClientSize = new System.Drawing.Size(284, 261);
 			this.Controls.Add(this.btnCancelar);
 			this.Controls.Add(this.btnAceptar);
 			this.Controls.Add(this.lblDescripcion);
 			this.Controls.Add(this.txtDescripcion);
+			this.MaximizeBox = false;
+			this.MaximumSize = new System.Drawing.Size(300, 300);
+			this.MinimumSize = new System.Drawing.Size(300, 300);
 			this.Name = "frmGestionMarca";
+			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
 			this.Text = "frmGestionMarca";
 			this.Load += new System.EventHandler(this.frmGestionMarca_Load);
 			this.ResumeLayout(false);

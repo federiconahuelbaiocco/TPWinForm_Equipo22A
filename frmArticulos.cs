@@ -18,6 +18,7 @@ namespace TPWinForm_equipo_22A
 		public frmArticulos()
 		{
 			InitializeComponent();
+
 		}
 
 
@@ -88,6 +89,7 @@ namespace TPWinForm_equipo_22A
 			// Verifico si hay una fila seleccionada en la grilla.
 			if (dgvArticulos.CurrentRow != null)
 			{
+
 				// Tomo el objeto completo que está en la fila seleccionada
 				seleccionado = (Articulo)dgvArticulos.CurrentRow.DataBoundItem;
 
@@ -95,6 +97,7 @@ namespace TPWinForm_equipo_22A
 				detalle.ShowDialog();
 
 				cargarGrilla();
+
 			}
 			else
 			{
@@ -185,16 +188,25 @@ namespace TPWinForm_equipo_22A
 
 		private void dgvArticulos_SelectionChanged(object sender, EventArgs e)
 		{
+			// el if Evita errores cuando la grilla se refresca
+			// y no hay ninguna fila seleccionada.
 			if (dgvArticulos.CurrentRow != null)
 			{
+				// aca guardo el artículo elegido en la grilla.
+				// El DataBoundItem es la forma de agarrar el objeto completo (no solo la fila visible).
 				articuloActual = (Articulo)dgvArticulos.CurrentRow.DataBoundItem;
+
+				// Cada que cambio de artículo se vuelve a cero Asíse muestra siempre la primera foto
 				indiceImagenActual = 0;
+
+				// Y llamás a la función que se encarga de mostrar la imagen.
 				MostrarImagenActual();
 			}
 		}
 
 		private void MostrarImagenActual()
 		{
+			// control de errores: Si el artículo no tiene fotos, se muestra la imagen por defecto y listo.
 			if (articuloActual == null || articuloActual.Imagenes == null || articuloActual.Imagenes.Count == 0)
 			{
 				pbxArticulo.Load("imagenes/imagenDefecto.jpg");
@@ -203,14 +215,18 @@ namespace TPWinForm_equipo_22A
 
 			try
 			{
+				// intento cargar la foto de la URL que recibí en la lista
 				pbxArticulo.Load(articuloActual.Imagenes[indiceImagenActual]);
 			}
 			catch
 			{
+				// Si por alguna razón la URL falla (está caída, mal escrita, etc.) se muestra por defecto
 				pbxArticulo.Load("imagenes/imagenDefecto.jpg");
 			}
 		}
 
+		// Este método permite navegar a la imagen anterior del artículo actual.
+		// Si se llega al inicio de la lista, vuelve a la última imagen (circular).
 		private void btnAnterior_Click(object sender, EventArgs e)
 		{
 			if (articuloActual != null && articuloActual.Imagenes.Count > 0)
@@ -222,6 +238,8 @@ namespace TPWinForm_equipo_22A
 			}
 		}
 
+		// Este método permite avanzar a la siguiente imagen del artículo actual.
+		// Si se llega al final de la lista de imágenes, vuelve a la primera (navegación circular).
 		private void btnSiguiente_Click(object sender, EventArgs e)
 		{
 			if (articuloActual != null && articuloActual.Imagenes.Count > 0)
