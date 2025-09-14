@@ -50,8 +50,6 @@ namespace TPWinForm_equipo_22A
 
 		public void agregar(Marca nueva)
 		{
-			// Lógica para INSERT en la tabla MARCAS
-			// Similar a ArticuloNegocio.agregar()
 			SqlConnection conexion = new SqlConnection();
 			SqlCommand comando = new SqlCommand();
 			try
@@ -76,8 +74,6 @@ namespace TPWinForm_equipo_22A
 
 		public void modificar(Marca marca)
 		{
-			// Lógica para UPDATE en la tabla MARCAS
-			// Similar a ArticuloNegocio.modificar()
 			SqlConnection conexion = new SqlConnection();
 			SqlCommand comando = new SqlCommand();
 			try
@@ -103,8 +99,6 @@ namespace TPWinForm_equipo_22A
 
 		public void eliminar(int id)
 		{
-			// Lógica para DELETE en la tabla MARCAS
-			// Similar a ArticuloNegocio.eliminar()
 			SqlConnection conexion = new SqlConnection();
 			SqlCommand comando = new SqlCommand();
 			try

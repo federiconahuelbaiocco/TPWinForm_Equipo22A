@@ -30,7 +30,6 @@ namespace TPWinForm_equipo_22A
 					Categoria aux = new Categoria();
 					aux.Id = (int)lector["Id"];
 					aux.Descripcion = (string)lector["Descripcion"];
-
 					lista.Add(aux);
 				}
 			}
@@ -64,7 +63,6 @@ namespace TPWinForm_equipo_22A
 
 				conexion.Open();
 				comando.ExecuteNonQuery();
-
 			}
 			catch (Exception)
 			{
@@ -94,7 +92,6 @@ namespace TPWinForm_equipo_22A
 
 				conexion.Open();
 				comando.ExecuteNonQuery();
-
 			}
 			catch (Exception )
 			{
@@ -122,7 +119,6 @@ namespace TPWinForm_equipo_22A
 
 				conexion.Open();
 				comando.ExecuteNonQuery();
-
 			}
 			catch (Exception )
 			{

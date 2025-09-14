@@ -15,7 +15,6 @@ namespace TPWinForm_equipo_22A
 		public frmCategorias()
 		{
 			InitializeComponent();
-			cargarGrilla();
 		}
 
 		private void frmCategorias_Load(object sender, EventArgs e)
@@ -123,7 +122,5 @@ namespace TPWinForm_equipo_22A
 				MessageBox.Show(ex.ToString());
 			}
 		}
-
-		
 	}
 }

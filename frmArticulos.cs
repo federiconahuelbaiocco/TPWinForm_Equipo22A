@@ -18,7 +18,6 @@ namespace TPWinForm_equipo_22A
 		public frmArticulos()
 		{
 			InitializeComponent();
-
 		}
 
 
@@ -89,7 +88,6 @@ namespace TPWinForm_equipo_22A
 			// Verifico si hay una fila seleccionada en la grilla.
 			if (dgvArticulos.CurrentRow != null)
 			{
-
 				// Tomo el objeto completo que está en la fila seleccionada
 				seleccionado = (Articulo)dgvArticulos.CurrentRow.DataBoundItem;
 
@@ -97,7 +95,6 @@ namespace TPWinForm_equipo_22A
 				detalle.ShowDialog();
 
 				cargarGrilla();
-
 			}
 			else
 			{

@@ -111,7 +111,6 @@ namespace TPWinForm_equipo_22A
 
 			try
 			{
-				// Asigno lo que escribió el usuario en los campos
 				articulo.Codigo = txtCodigo.Text;
 				articulo.Nombre = txtNombre.Text;
 				articulo.Descripcion = txtDescripcion.Text;
@@ -124,7 +123,6 @@ namespace TPWinForm_equipo_22A
 				articulo.Categoria = (Categoria)cboCategoria.SelectedItem;
 
 				// Agregar la imagen del TextBox si no está vacía y no está ya en la lista
-				string url = txtUrlImagen.Text.Trim();
 				if (!string.IsNullOrEmpty(url))
 				{
 					if (articulo.Imagenes == null)
@@ -133,7 +131,6 @@ namespace TPWinForm_equipo_22A
 						articulo.Imagenes.Add(url);
 				}
 
-				// Si el ID del artículo es 0, es nuevo Si tiene ID, significa que ya existe entonces lo estoy modificando modificando.
 				if (articulo.Id != 0)
 				{
 					negocio.modificar(articulo);
@@ -147,12 +144,10 @@ namespace TPWinForm_equipo_22A
 					MessageBox.Show("Agregado exitosamente");
 				}
 
-				// Cierro la ventana de gestión
 				this.Close();
 			}
 			catch (Exception ex)
 			{
-				// Si algo sale mal, muestro un mensaje de error
 				MessageBox.Show(ex.ToString());
 			}
 		}
