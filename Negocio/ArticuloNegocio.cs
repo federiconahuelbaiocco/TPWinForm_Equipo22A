@@ -333,6 +333,8 @@ namespace Negocio
 		// Recibe el id del artículo y una lista de URLs de imágenes.
 		public void guardarImagenes(int idArticulo, List<string> imagenes)
 		{
+			if (imagenes == null)
+				return;
 			// Se crea y abre la conexión a la base de datos.
 			using (SqlConnection conexion = new SqlConnection("server=.\\SQLEXPRESS; database=CATALOGO_P3_DB; integrated security=true"))
 			{
